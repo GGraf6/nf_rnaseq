@@ -138,14 +138,14 @@
             "description": "Choose the featureCounts options.",
             "properties": {
 
-                "featurecounts_B_flag": {
+                "B_flag": {
                     "type": "boolean",
                     "description": "Only count read pairs that have both ends aligned.",
                     "fa_icon": "fas fa-file-code",
                     "default": true
                 },
 
-                "featurecounts_C_flag": {
+                "C_flag": {
                     "type": "boolean",
                     "fa_icon": "fas fa-file-code",
                     "description": "Do not count read pairs that have their two ends mapping to different chromosomes or mapping to same chromosome but on different strands.",

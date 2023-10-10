@@ -89,20 +89,20 @@ star_align_args       += ' --outSAMtype ' + params.outSAMtype_file + ' ' + param
     SUBREAD (FEATURECOUNTS) PARAMETERS
 ======================================================================================== */
 // B flag
-params.featurecounts_B_flag = true 
+params.B_flag = true 
 // Only count read pairs that have both ends aligned.
 
-if(params.featurecounts_B_flag){
+if(params.B_flag){
     featurecounts_args += " -B "
 }
 
 // C flag
-params.featurecounts_C_flag = true
+params.C_flag = true
 // -C  Do not count read pairs that have their two ends mapping
 //     to different chromosomes or mapping to same chromosome
 //     but on different strands.
 
-if(params.featurecounts_C_flag){
+if(params.C_flag){
     featurecounts_args += " -C "
 }
 
