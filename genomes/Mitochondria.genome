@@ -1,0 +1,7 @@
+name	    Mitochondria
+species	    Homo_sapiens_GRCh38_chromosome_MT
+fasta	    ${GENOMES}/Mitochondria
+bismark	    ${GENOMES}/Mitochondria
+bowtie	    ${GENOMES}/Mitochondria/mitochondria
+bowtie2	    ${GENOMES}/Mitochondria/mitochondria
+hisat2	    ${GENOMES}/Mitochondria/mitochondria

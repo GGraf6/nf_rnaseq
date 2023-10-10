@@ -1,0 +1,8 @@
+name            Lambda
+species         Enterobacteriophage_lambda
+fasta           ${GENOMES}/Enterobacteriophage_lambda/NCBI/1993-04-28/Sequence/WholeGenomeFasta/
+bismark         ${GENOMES}/Enterobacteriophage_lambda/NCBI/1993-04-28/Sequence/BismarkIndex/
+bowtie          ${GENOMES}/Enterobacteriophage_lambda/NCBI/1993-04-28/Sequence/BowtieIndex/genome
+bowtie2         ${GENOMES}/Enterobacteriophage_lambda/NCBI/1993-04-28/Sequence/Bowtie2Index/genome
+star            ${GENOMES}/Enterobacteriophage_lambda/NCBI/1993-04-28/Sequence/Sequence/STARIndex
+bwa             ${GENOMES}/Enterobacteriophage_lambda/NCBI/1993-04-28/Sequence/Sequence/BWAIndex/genome

@@ -1,0 +1,11 @@
+name            GRCm38
+species         Mouse
+fasta           ${GENOMES}/Mus_musculus/Ensembl/GRCm38/Sequence/WholeGenomeFasta/
+bismark         ${GENOMES}/Mus_musculus/Ensembl/GRCm38/Sequence/BismarkIndex/
+bowtie	        ${GENOMES}/Mus_musculus/Ensembl/GRCm38/Sequence/BowtieIndex/genome
+bowtie2	        ${GENOMES}/Mus_musculus/Ensembl/GRCm38/Sequence/Bowtie2Index/genome
+star            ${GENOMES}/Mus_musculus/Ensembl/GRCm38/Sequence/STARIndex
+bwa             ${GENOMES}/Mus_musculus/Ensembl/GRCm38/Sequence/BWAIndex/genome
+hisat2	        ${GENOMES}/Mus_musculus/Ensembl/GRCm38/Sequence/Hisat2Index/genome
+hisat2_splices	${GENOMES}/Mus_musculus/Ensembl/GRCm38/Sequence/Hisat2Index/splice_sites.txt
+gtf	            ${GENOMES}/Mus_musculus/Ensembl/GRCm38/Annotation/Genes/genes.gtf

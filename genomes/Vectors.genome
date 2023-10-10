@@ -1,0 +1,7 @@
+name	    Vectors
+species	    Vectors
+fasta	    ${GENOMES}/Vectors
+bismark	    ${GENOMES}/Vectors
+bowtie	    ${GENOMES}/Vectors/Vectors
+bowtie2	    ${GENOMES}/Vectors/Vectors
+hisat2	    ${GENOMES}/Vectors/Vectors
