@@ -129,7 +129,7 @@ genome = getGenome(params.genome)
     FILES CHANNEL
 ======================================================================================== */
 include { makeFilesChannel; getFileBaseNames } from './modules/files.mod.nf'
-file_ch = makeFilesChannel(args)
+file_ch = makeFilesChannel(input_files)
 
 
 /* ========================================================================================
