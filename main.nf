@@ -181,7 +181,7 @@ workflow {
                 STAR_ALIGN                      (TRIM_GALORE.out.reads, outdir, star_align_args)
 
             } else {
-                STAR_ALIGN                      (TRIM_GALORE.out.reads, outdir, star_align_args)
+                STAR_ALIGN                      (file_ch, outdir, star_align_args)
             }
         
             SAMTOOLS_VIEW               (STAR_ALIGN.out.bam, outdir, samtools_view_args)
@@ -208,7 +208,7 @@ workflow {
                 HISAT2                          (TRIM_GALORE.out.reads, outdir, hisat2_args)
 
             } else {
-                HISAT2                          (TRIM_GALORE.out.reads, outdir, hisat2_args)
+                HISAT2                          (file_ch, outdir, hisat2_args)
             }
         
             SAMTOOLS_VIEW               (HISAT2.out.bam, outdir, samtools_view_args)
