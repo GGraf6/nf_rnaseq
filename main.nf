@@ -184,8 +184,8 @@ workflow {
                 STAR_ALIGN                      (file_ch, outdir, star_align_args)
             }
         
-            SAMTOOLS_VIEW               (STAR_ALIGN.out.bam, outdir, samtools_view_args)
-            SAMTOOLS_SORT               (SAMTOOLS_VIEW.out.bam, outdir, samtools_sort_args)
+            //SAMTOOLS_VIEW               (STAR_ALIGN.out.bam, outdir, samtools_view_args)
+            SAMTOOLS_SORT               (STAR_ALIGN.out.bam, outdir, samtools_sort_args)
             SAMTOOLS_INDEX              (SAMTOOLS_SORT.out.bam, outdir, samtools_index_args)
             FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, STAR_ALIGN.out.single_end, outdir, featurecounts_args)
             featurecounts_merge_counts_ch = FEATURECOUNTS.out.counts.collect()
@@ -211,8 +211,8 @@ workflow {
                 HISAT2                          (file_ch, outdir, hisat2_args)
             }
         
-            SAMTOOLS_VIEW               (HISAT2.out.bam, outdir, samtools_view_args)
-            SAMTOOLS_SORT               (SAMTOOLS_VIEW.out.bam, outdir, samtools_sort_args)
+            //SAMTOOLS_VIEW               (HISAT2.out.bam, outdir, samtools_view_args)
+            SAMTOOLS_SORT               (HISAT2.out.bam, outdir, samtools_sort_args)
             SAMTOOLS_INDEX              (SAMTOOLS_SORT.out.bam, outdir, samtools_index_args)
             FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, HISAT2.out.single_end, outdir, featurecounts_args)
             featurecounts_merge_counts_ch = FEATURECOUNTS.out.counts.collect()

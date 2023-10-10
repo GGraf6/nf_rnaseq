@@ -22,7 +22,7 @@ process HISAT2 {
 		val(hisat2_args)
 
 	output:
-		path "*bam",       emit: bam
+		path "*bam"      , emit: bam
 		path "*stats.txt", emit: stats
 		val(single_end)  , emit: single_end
 		
