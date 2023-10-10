@@ -1,13 +1,6 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
-
-/* ========================================================================================
-    DEFAULT PARAMETERS
-======================================================================================== */
-params.strandness = 'reverse'
-
-
 /* ========================================================================================
     PROCESSES
 ======================================================================================== */
@@ -32,17 +25,6 @@ process FEATURECOUNTS {
 
 	script:
 		/* ==========
-			Strandedness
-		========== */
-        if (params.strandness == 'forward') {
-            strandedness = 1
-        } else if (params.strandness == 'reverse') {
-            strandedness = 2
-        } else if (params.strandness == 'unstranded' || params.strandness == 'smartseq2') {
-            strandedness = 0
-        }
-
-		/* ==========
 			Paired-end or single-end
 		========== */
         paired_end = single_end ? '' : '-p'
@@ -65,7 +47,6 @@ process FEATURECOUNTS {
             $paired_end \\
             -T $task.cpus \\
             -a $annotation \\
-            -s $strandedness \\
             -o ${basename}.featureCounts.txt \\
             ${bam}
 		"""

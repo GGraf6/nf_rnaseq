@@ -172,7 +172,7 @@
                     "type": "boolean",
                     "fa_icon": "fas fa-fast-forward",
                     "description": "Skip FastQ Screen.",
-                    "default": true
+                    "default": false
                 }
 
             }

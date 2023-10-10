@@ -20,12 +20,6 @@ if(params.outdir){
 }
 
 /* ========================================================================================
-    ALIGNER
-======================================================================================== */
-params.aligner = 'star'
-
-
-/* ========================================================================================
     SKIP STEPS
 ======================================================================================== */
 params.skip_qc           = false
@@ -36,9 +30,9 @@ params.skip_fastq_screen = false
     DEFAULT PARAMETERS
 ======================================================================================== */
 params.fastq_screen_conf = '/cluster/work/nme/software/config/fastq_screen.conf' // FastQ Screen config file directory
-params.genome            = 'GRCm39' // Default genome
+params.genome            = 'GRCm39'    // Default genome
 params.strandness        = 'smartseq2' // Library strandedness
-params.single_end        = false // Force to input files to be single-end
+params.single_end        = false       // Force to input files to be single-end
 
 
 /* ========================================================================================
@@ -65,6 +59,12 @@ multiqc_args        = params.multiqc_args
 samtools_view_args  = params.samtools_view_args
 samtools_sort_args  = params.samtools_sort_args
 samtools_index_args = params.samtools_index_args
+
+/* ========================================================================================
+    ALIGNER
+======================================================================================== */
+params.aligner = 'star'
+
 
 /* ========================================================================================
     HISAT2 PARAMETERS
@@ -104,6 +104,15 @@ params.featurecounts_C_flag = true
 
 if(params.featurecounts_C_flag){
     featurecounts_args += " -C "
+}
+
+// strandness
+if (params.strandness == 'forward') {
+    featurecounts_args += " -s 1 "
+} else if (params.strandness == 'reverse') {
+    featurecounts_args += " -s 2 "
+} else if (params.strandness == 'unstranded' || params.strandness == 'smartseq2') {
+    featurecounts_args += " -s 0 "
 }
 
 
@@ -147,7 +156,7 @@ include { STAR_ALIGN }                 from './modules/star.mod.nf'         para
 include { SAMTOOLS_VIEW }              from './modules/samtools.mod.nf'
 include { SAMTOOLS_SORT }              from './modules/samtools.mod.nf'
 include { SAMTOOLS_INDEX }             from './modules/samtools.mod.nf'
-include { FEATURECOUNTS }              from './modules/subread.mod.nf'      params(genome: genome, strand: params.strandness)
+include { FEATURECOUNTS }              from './modules/subread.mod.nf'      params(genome: genome)
 include { FEATURECOUNTS_MERGE_COUNTS } from './modules/subread.mod.nf'
 include { MULTIQC }                    from './modules/multiqc.mod.nf' 
 
