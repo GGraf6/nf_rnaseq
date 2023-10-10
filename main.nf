@@ -22,8 +22,9 @@ if(params.outdir){
 /* ========================================================================================
     SKIP STEPS
 ======================================================================================== */
-params.skip_qc           = false
-params.skip_fastq_screen = false
+params.skip_qc             = false
+params.skip_fastq_screen   = false
+params.skip_quantification = false
 
 
 /* ========================================================================================
@@ -169,24 +170,24 @@ workflow {
 
             if (!params.skip_qc){ 
 
-                FASTQC                          (file_ch, outdir, params.fastqc_args)
-                TRIM_GALORE                     (file_ch, outdir, params.trim_galore_args)
+                FASTQC                          (file_ch, outdir, fastqc_args)
+                TRIM_GALORE                     (file_ch, outdir, trim_galore_args)
 
                 if (!params.skip_fastq_screen){ 
-                FASTQ_SCREEN                    (TRIM_GALORE.out.reads, outdir, params.fastq_screen_args)
+                FASTQ_SCREEN                    (TRIM_GALORE.out.reads, outdir, fastq_screen_args)
                 }
 
-                FASTQC2                         (TRIM_GALORE.out.reads, outdir, params.fastqc_args)
-                STAR_ALIGN                      (TRIM_GALORE.out.reads, outdir, params.star_align_args)
+                FASTQC2                         (TRIM_GALORE.out.reads, outdir, fastqc_args)
+                STAR_ALIGN                      (TRIM_GALORE.out.reads, outdir, star_align_args)
 
             } else {
-                STAR_ALIGN                      (TRIM_GALORE.out.reads, outdir, params.star_align_args)
+                STAR_ALIGN                      (TRIM_GALORE.out.reads, outdir, star_align_args)
             }
         
-            SAMTOOLS_VIEW               (STAR_ALIGN.out.bam, outdir, params.samtools_view_args)
-            SAMTOOLS_SORT               (SAMTOOLS_VIEW.out.bam, outdir, params.samtools_sort_args)
-            SAMTOOLS_INDEX              (SAMTOOLS_SORT.out.bam, outdir, params.samtools_index_args)
-            FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, STAR_ALIGN.out.single_end, outdir, params.featurecounts_args)
+            SAMTOOLS_VIEW               (STAR_ALIGN.out.bam, outdir, samtools_view_args)
+            SAMTOOLS_SORT               (SAMTOOLS_VIEW.out.bam, outdir, samtools_sort_args)
+            SAMTOOLS_INDEX              (SAMTOOLS_SORT.out.bam, outdir, samtools_index_args)
+            FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, STAR_ALIGN.out.single_end, outdir, featurecounts_args)
             featurecounts_merge_counts_ch = FEATURECOUNTS.out.counts.collect()
             FEATURECOUNTS_MERGE_COUNTS  (featurecounts_merge_counts_ch, outdir)
         }
@@ -196,24 +197,24 @@ workflow {
 
             if (!params.skip_qc){ 
 
-                FASTQC                          (file_ch, outdir, params.fastqc_args)
-                TRIM_GALORE                     (file_ch, outdir, params.trim_galore_args)
+                FASTQC                          (file_ch, outdir, fastqc_args)
+                TRIM_GALORE                     (file_ch, outdir, trim_galore_args)
 
                 if (!params.skip_fastq_screen){ 
-                FASTQ_SCREEN                    (TRIM_GALORE.out.reads, outdir, params.fastq_screen_args)
+                FASTQ_SCREEN                    (TRIM_GALORE.out.reads, outdir, fastq_screen_args)
                 }
 
-                FASTQC2                         (TRIM_GALORE.out.reads, outdir, params.fastqc_args)
-                HISAT2                          (TRIM_GALORE.out.reads, outdir, params.hisat2_args)
+                FASTQC2                         (TRIM_GALORE.out.reads, outdir, fastqc_args)
+                HISAT2                          (TRIM_GALORE.out.reads, outdir, hisat2_args)
 
             } else {
-                HISAT2                          (TRIM_GALORE.out.reads, outdir, params.hisat2_args)
+                HISAT2                          (TRIM_GALORE.out.reads, outdir, hisat2_args)
             }
         
-            SAMTOOLS_VIEW               (HISAT2.out.bam, outdir, params.samtools_view_args)
-            SAMTOOLS_SORT               (SAMTOOLS_VIEW.out.bam, outdir, params.samtools_sort_args)
-            SAMTOOLS_INDEX              (SAMTOOLS_SORT.out.bam, outdir, params.samtools_index_args)
-            FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, HISAT2.out.single_end, outdir, params.featurecounts_args)
+            SAMTOOLS_VIEW               (HISAT2.out.bam, outdir, samtools_view_args)
+            SAMTOOLS_SORT               (SAMTOOLS_VIEW.out.bam, outdir, samtools_sort_args)
+            SAMTOOLS_INDEX              (SAMTOOLS_SORT.out.bam, outdir, samtools_index_args)
+            FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, HISAT2.out.single_end, outdir, featurecounts_args)
             featurecounts_merge_counts_ch = FEATURECOUNTS.out.counts.collect()
             FEATURECOUNTS_MERGE_COUNTS  (featurecounts_merge_counts_ch, outdir)
         }
@@ -250,7 +251,7 @@ workflow {
                     FEATURECOUNTS.out.summary.ifEmpty([])
                     ).collect() 
 
-        MULTIQC (multiqc_ch, outdir, params.multiqc_args)
+        MULTIQC (multiqc_ch, outdir, multiqc_args)
 }
 
 workflow.onComplete {
