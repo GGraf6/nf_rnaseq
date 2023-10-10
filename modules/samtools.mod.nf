@@ -21,7 +21,7 @@ process SAMTOOLS_VIEW {
 	input:
 		path(bam)
 		val(outputdir)
-		val(samtools_sort_args)
+		val(samtools_view_args)
 
 	output:
 		path "*bam", emit: bam
@@ -35,7 +35,7 @@ process SAMTOOLS_VIEW {
 		"""
 		module load samtools
 
-		samtools view --threads ${task.cpus} -bS -F 4 -F 8 -F 256 $bam -o ${basename}.bam
+		samtools view --threads ${task.cpus} $samtools_view_args -bS -F 4 -F 8 -F 256 $bam -o ${basename}.bam
 		"""
 }
 
