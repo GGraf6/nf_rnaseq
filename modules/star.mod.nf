@@ -27,18 +27,18 @@ process STAR_ALIGN {
 		val(star_align_args)
 
 	output:
-		path('*Aligned.out.bam') , emit: bam
+		path('*d.out.bam')       , emit: bam
 		path('*Log.final.out')   , emit: log_final
 		path('*Log.out')         , emit: log_out
 		path('*Log.progress.out'), emit: log_progress
 
-		path('*sortedByCoord.out.bam')  , optional:true, emit: bam_sorted
-		path('*toTranscriptome.out.bam'), optional:true, emit: bam_transcript
-		path('*Aligned.unsort.out.bam') , optional:true, emit: bam_unsorted
-		path('*fastq.gz')               , optional:true, emit: fastq
-		path('*.tab')                   , optional:true, emit: tab
-		path('*.out.junction')          , optional:true, emit: junction
-		path('*.out.sam')               , optional:true, emit: sam
+		path('*sortedByCoord.out.bam')  , optional: true, emit: bam_sorted
+		path('*toTranscriptome.out.bam'), optional: true, emit: bam_transcript
+		path('*Aligned.unsort.out.bam') , optional: true, emit: bam_unsorted
+		path('*fastq.gz')               , optional: true, emit: fastq
+		path('*.tab')                   , optional: true, emit: tab
+		path('*.out.junction')          , optional: true, emit: junction
+		path('*.out.sam')               , optional: true, emit: sam
 
 		val(single_end), emit: single_end
 		
