@@ -35,7 +35,7 @@ process SAMTOOLS_VIEW {
 		"""
 		module load samtools
 
-		samtools view --threads ${task.cpus} $samtools_view_args -bS -F 4 -F 8 -F 256 $bam -o ${basename}.bam
+		samtools view --threads ${task.cpus-1} $samtools_view_args -bS -F 4 -F 8 -F 256 $bam -o ${basename}.bam
 		"""
 }
 
@@ -63,7 +63,7 @@ process SAMTOOLS_SORT {
 		"""
 		module load samtools
 
-		samtools sort --threads ${task.cpus} $samtools_sort_args $bam -o ${basename}.sorted.bam
+		samtools sort --threads ${task.cpus-1} $samtools_sort_args $bam -o ${basename}.sorted.bam
     	"""
 }
 
@@ -87,6 +87,6 @@ process SAMTOOLS_INDEX {
 		"""
 		module load samtools
 
-		samtools index -@ ${task.cpus} $samtools_index_args $bam
+		samtools index -@ ${task.cpus-1} $samtools_index_args $bam
 		"""
 }
