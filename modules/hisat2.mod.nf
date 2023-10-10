@@ -63,6 +63,6 @@ process HISAT2 {
 		"""
 		module load hisat2 samtools
 
-		hisat2 -p ${task.cpus} ${hisat2_args} -x ${index} ${splices} ${readString} 2>${hisat_name}_ht2_stats.txt -> ${hisat_name}_ht2.bam
+		hisat2 -p ${task.cpus} ${hisat2_args} -x ${index} ${splices} ${readString} 1>${hisat_name}_ht2.bam  2>${hisat_name}_ht2_stats.txt 
 		"""
 }
