@@ -239,7 +239,7 @@ workflow {
 
         } else {
             if (params.aligner == 'star'){
-                multiqc_ch = STAR_ALIGN.out.stats.ifEmpty([])
+                multiqc_ch = STAR_ALIGN.out.log_final.ifEmpty([])
             }
             if (params.aligner == 'hisat2'){
                 multiqc_ch = HISAT2.out.stats.ifEmpty([])

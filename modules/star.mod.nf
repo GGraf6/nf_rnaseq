@@ -24,7 +24,7 @@ process STAR_ALIGN {
 	input:
 		tuple val(name), path(reads)
 		val(outputdir)
-		val(star_args)
+		val(star_align_args)
 
 	output:
 		path('*Aligned.out.bam') , emit: bam
@@ -71,7 +71,7 @@ process STAR_ALIGN {
 			gzip input files
 		========== */
 		if (gzip){
-			star_args += " --readFilesCommand zcat "
+			star_align_args += " --readFilesCommand zcat "
 		}
 
 		/* ==========
@@ -91,7 +91,7 @@ process STAR_ALIGN {
 			--genomeDir ${index} \\
 			--outFileNamePrefix ${star_name} \\
 			--runThreadN ${task.cpus} \\
-			${star_args} \\
+			${star_align_args} \\
 			--readFilesIn ${readString}
 		"""
 }
