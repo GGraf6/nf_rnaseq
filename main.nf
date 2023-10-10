@@ -46,7 +46,6 @@ params.star_align_args     = ''
 params.hisat2_args         = ''
 params.featurecounts_args  = ''
 params.multiqc_args        = ''
-params.samtools_view_args  = ''
 params.samtools_sort_args  = ''
 params.samtools_index_args = ''
 
@@ -57,7 +56,6 @@ star_align_args     = params.star_align_args
 hisat2_args         = params.hisat2_args 
 featurecounts_args  = params.featurecounts_args
 multiqc_args        = params.multiqc_args
-samtools_view_args  = params.samtools_view_args
 samtools_sort_args  = params.samtools_sort_args
 samtools_index_args = params.samtools_index_args
 
@@ -154,7 +152,6 @@ include { FASTQ_SCREEN }               from './modules/fastq_screen.mod.nf' para
 include { TRIM_GALORE }                from './modules/trim_galore.mod.nf'
 include { HISAT2 }                     from './modules/hisat2.mod.nf'       params(genome: genome, bam_output: false)
 include { STAR_ALIGN }                 from './modules/star.mod.nf'         params(genome: genome, bam_output: false)
-include { SAMTOOLS_VIEW }              from './modules/samtools.mod.nf'
 include { SAMTOOLS_SORT }              from './modules/samtools.mod.nf'
 include { SAMTOOLS_INDEX }             from './modules/samtools.mod.nf'
 include { FEATURECOUNTS }              from './modules/subread.mod.nf'      params(genome: genome)
@@ -184,7 +181,6 @@ workflow {
                 STAR_ALIGN                      (file_ch, outdir, star_align_args)
             }
         
-            //SAMTOOLS_VIEW               (STAR_ALIGN.out.bam, outdir, samtools_view_args)
             SAMTOOLS_SORT               (STAR_ALIGN.out.bam, outdir, samtools_sort_args)
             SAMTOOLS_INDEX              (SAMTOOLS_SORT.out.bam, outdir, samtools_index_args)
             FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, STAR_ALIGN.out.single_end, outdir, featurecounts_args)
@@ -210,8 +206,7 @@ workflow {
             } else {
                 HISAT2                          (file_ch, outdir, hisat2_args)
             }
-        
-            //SAMTOOLS_VIEW               (HISAT2.out.bam, outdir, samtools_view_args)
+
             SAMTOOLS_SORT               (HISAT2.out.bam, outdir, samtools_sort_args)
             SAMTOOLS_INDEX              (SAMTOOLS_SORT.out.bam, outdir, samtools_index_args)
             FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, HISAT2.out.single_end, outdir, featurecounts_args)

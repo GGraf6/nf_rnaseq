@@ -12,33 +12,6 @@ params.bam_output = true // Setting if the bam file should be published
     PROCESSES
 ======================================================================================== */
 
-// SAMTOOLS_VIEW
-process SAMTOOLS_VIEW {	
-    
-	label 'samtools'
-	tag "$bam" // Adds name to job submission
-
-	input:
-		path(bam)
-		val(outputdir)
-		val(samtools_view_args)
-
-	output:
-		path "*bam", emit: bam
-
-    script:
-		/* ==========
-			Basename
-		========== */
-		basename = bam.toString() - ".bam"
-
-		"""
-		module load samtools
-
-		samtools view --threads ${task.cpus-1} $samtools_view_args -bS -F 4 -F 8 -F 256 $bam -o ${basename}.bam
-		"""
-}
-
 // SAMTOOLS_SORT
 process SAMTOOLS_SORT {	
     

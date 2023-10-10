@@ -215,12 +215,6 @@
                     "fa_icon": "fas fa-file-code"
                 },
 
-                "samtools_view_args": {
-                    "type": "string",
-                    "description": "Samtools view arguments.",
-                    "fa_icon": "fas fa-file-code"
-                },
-
                 "samtools_sort_args": {
                     "type": "string",
                     "description": "Samtools sort arguments.",
