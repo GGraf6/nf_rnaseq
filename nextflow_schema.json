@@ -93,7 +93,7 @@
                     "default": "BAM",
                     "fa_icon": "fas fa-file-code",
                     "description": "1st word of the STAR parameter: outSAMtype",
-                    "enum": ["BAM", "SAM"]
+                    "enum": ["BAM"]
                 },
 
                 "outSAMtype_sort": {
