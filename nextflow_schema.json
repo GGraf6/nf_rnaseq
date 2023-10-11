@@ -98,7 +98,7 @@
                 "hisat2_no_mixed": {
                     "type": "boolean",
                     "fa_icon": "fas fa-file-code",
-                    "description": "HISAT2 parameter: --no-mixed. Suppresses unpaired alignments for paired reads",
+                    "description": "HISAT2 parameter: --no-mixed. Suppresses unpaired alignments for paired reads.",
                     "default": true
                 },
 
@@ -207,7 +207,7 @@
                     "fa_icon": "fas fa-file-code"
                 },
 
-                "hisat2_args": {
+                "hisat2_align_args": {
                     "type": "string",
                     "description": "HISAT2 aligner arguments.",
                     "fa_icon": "fas fa-file-code"

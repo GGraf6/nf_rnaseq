@@ -3,6 +3,12 @@ nextflow.enable.dsl=2
 
 
 /* ========================================================================================
+    CONTAINER
+======================================================================================== */
+// container = 'singularity pull docker://quay.io/biocontainers/star:2.7.11a--h0033a41_0'
+
+
+/* ========================================================================================
     DEFAULT PARAMETERS
 ======================================================================================== */
 params.bam_output = true // Setting if the bam file should be published
@@ -16,7 +22,7 @@ gzip              = params.gzip
 ======================================================================================== */
 process STAR_ALIGN {
 
-	label 'star'
+	label 'star_align'
 	tag "$name" // Adds name to job submission
 
 	input:

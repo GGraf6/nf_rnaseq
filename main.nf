@@ -44,7 +44,7 @@ params.fastqc_args         = ''
 params.fastq_screen_args   = ''
 params.trim_galore_args    = ''
 params.star_align_args     = ''
-params.hisat2_args         = ''
+params.hisat2_align_args   = ''
 params.featurecounts_args  = ''
 params.multiqc_args        = ''
 params.samtools_sort_args  = ''
@@ -54,7 +54,7 @@ fastqc_args         = params.fastqc_args
 fastq_screen_args   = params.fastq_screen_args
 trim_galore_args    = params.trim_galore_args 
 star_align_args     = params.star_align_args 
-hisat2_args         = params.hisat2_args 
+hisat2_align_args   = params.hisat2_align_args 
 featurecounts_args  = params.featurecounts_args
 multiqc_args        = params.multiqc_args
 samtools_sort_args  = params.samtools_sort_args
@@ -68,27 +68,27 @@ params.aligner = 'star'
 
 
 /* ========================================================================================
-    HISAT2 PARAMETERS
+    HISAT2_ALIGN PARAMETERS
 ======================================================================================== */
 // no-softclip: no soft-clipping
 params.hisat2_no_softclip = true
 
 if(params.hisat2_no_softclip){
-    hisat2_args += " --no-softclip "
+    hisat2_align_args += " --no-softclip "
 }
 
 // no-mixed: suppress unpaired alignments for paired reads
 params.hisat2_no_mixed = true
 
 if(params.hisat2_no_mixed){
-    hisat2_args += " --no-mixed "
+    hisat2_align_args += " --no-mixed "
 }
 
 // no-discordant: suppress discordant alignments for paired reads
 params.hisat2_no_discordant = true
 
 if(params.hisat2_no_discordant){
-    hisat2_args += " --no-discordant "
+    hisat2_align_args += " --no-discordant "
 }
 
 
@@ -167,7 +167,7 @@ include { FASTQC }                     from './modules/fastqc.mod.nf'
 include { FASTQC as FASTQC2 }          from './modules/fastqc.mod.nf'
 include { FASTQ_SCREEN }               from './modules/fastq_screen.mod.nf' params(fastq_screen_conf: params.fastq_screen_conf)
 include { TRIM_GALORE }                from './modules/trim_galore.mod.nf'
-include { HISAT2 }                     from './modules/hisat2.mod.nf'       params(genome: genome, bam_output: false)
+include { HISAT2_ALIGN }               from './modules/hisat2.mod.nf'       params(genome: genome, bam_output: false)
 include { STAR_ALIGN }                 from './modules/star.mod.nf'         params(genome: genome, bam_output: false)
 include { SAMTOOLS_SORT }              from './modules/samtools.mod.nf'
 include { SAMTOOLS_INDEX }             from './modules/samtools.mod.nf'
@@ -208,7 +208,7 @@ workflow {
             }
         }
 
-        // HISAT2 aligner
+        // HISAT2_ALIGN aligner
         if (params.aligner == 'hisat2'){
 
             if (!params.skip_qc){ 
@@ -221,17 +221,17 @@ workflow {
 
                 TRIM_GALORE                     (file_ch, outdir, trim_galore_args)
                 FASTQC2                         (TRIM_GALORE.out.reads, outdir, fastqc_args)
-                HISAT2                          (TRIM_GALORE.out.reads, outdir, hisat2_args)
+                HISAT2_ALIGN                    (TRIM_GALORE.out.reads, outdir, hisat2_align_args)
 
             } else {
-                HISAT2                          (file_ch, outdir, hisat2_args)
+                HISAT2_ALIGN                    (file_ch, outdir, hisat2_align_args)
             }
 
-            SAMTOOLS_SORT               (HISAT2.out.bam, outdir, samtools_sort_args)
+            SAMTOOLS_SORT               (HISAT2_ALIGN.out.bam, outdir, samtools_sort_args)
             SAMTOOLS_INDEX              (SAMTOOLS_SORT.out.bam, outdir, samtools_index_args)
 
             if (!params.skip_quantification){
-                FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, HISAT2.out.single_end, outdir, featurecounts_args)
+                FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, HISAT2_ALIGN.out.single_end, outdir, featurecounts_args)
                 featurecounts_merge_counts_ch = FEATURECOUNTS.out.counts.collect()
                 FEATURECOUNTS_MERGE_COUNTS  (featurecounts_merge_counts_ch, outdir)
             }
@@ -261,7 +261,7 @@ workflow {
                 multiqc_ch = STAR_ALIGN.out.log_final.ifEmpty([])
             }
             if (params.aligner == 'hisat2'){
-                multiqc_ch = HISAT2.out.stats.ifEmpty([])
+                multiqc_ch = HISAT2_ALIGN.out.stats.ifEmpty([])
             }
         }
 

@@ -11,15 +11,15 @@ params.bam_output = true // Setting if the bam file should be published
 /* ========================================================================================
     PROCESSES
 ======================================================================================== */
-process HISAT2 {
+process HISAT2_ALIGN {
 
-	label 'hisat2'
+	label 'hisat2_align'
 	tag "$name" // Adds name to job submission
 
 	input:
 		tuple val(name), path(reads)
 		val(outputdir)
-		val(hisat2_args)
+		val(hisat2_align_args)
 
 	output:
 		path "*bam"      , emit: bam
@@ -62,6 +62,6 @@ process HISAT2 {
 		"""
 		module load hisat2 samtools
 
-		hisat2 -p ${task.cpus} ${hisat2_args} -x ${index} ${splices} ${readString} 2>${hisat_name}_ht2_stats.txt | samtools view -bS -F 4 -F 8 -F 256 -> ${hisat_name}_ht2.bam
+		hisat2 -p ${task.cpus} ${hisat2_align_args} -x ${index} ${splices} ${readString} 2>${hisat_name}_ht2_stats.txt | samtools view -bS -F 4 -F 8 -F 256 -> ${hisat_name}_ht2.bam
 		"""
 }
