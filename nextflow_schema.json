@@ -91,21 +91,21 @@
                 "hisat2_no_softclip": {
                     "type": "boolean",
                     "fa_icon": "fas fa-file-code",
-                    "description": "HISAT2 parameter: no-softclip. No soft-clipping.",
+                    "description": "HISAT2 parameter: --no-softclip. No soft-clipping.",
                     "default": true
                 },
 
                 "hisat2_no_mixed": {
                     "type": "boolean",
                     "fa_icon": "fas fa-file-code",
-                    "description": "HISAT2 parameter: no-mixed. Suppresses unpaired alignments for paired reads",
+                    "description": "HISAT2 parameter: --no-mixed. Suppresses unpaired alignments for paired reads",
                     "default": true
                 },
 
                 "hisat2_no_discordant": {
                     "type": "boolean",
                     "fa_icon": "fas fa-file-code",
-                    "description": "HISAT2 parameter: no-discordant. Suppresses discordant alignments for paired reads.",
+                    "description": "HISAT2 parameter: --no-discordant. Suppresses discordant alignments for paired reads.",
                     "default": true
                 }
             }
