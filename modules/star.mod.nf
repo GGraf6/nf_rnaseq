@@ -99,10 +99,3 @@ process STAR_ALIGN {
 			--readFilesIn ${readString}
 		"""
 }
-
-
-
-
-
-
-

@@ -82,10 +82,3 @@ process SALMON_QUANT {
 		salmon quant --geneMap ${annotation} --threads ${task.cpus} --libType=$strandedness $reference ${reads} ${salmon_quant_args} -o ${basename}.salmon.txt
 		"""
 }
-
-
-
-
-
-
-

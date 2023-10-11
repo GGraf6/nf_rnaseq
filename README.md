@@ -108,13 +108,13 @@ Output directory where the files will be saved.
 
 ### HISAT2 parameters
 - Option to choose no soft-clipping.
-`--hisat2_no_softclip` _Default_
+`--hisat2_no_softclip` _Default: true_
 
 - Option to suppress unpaired alignments for paired reads
-`--hisat2_no_mixed` _Default_
+`--hisat2_no_mixed` _Default: true_
 
 - Option to suppress discordant alignments for paired reads.
-`--hisat2_no_discordant` _Default_
+`--hisat2_no_discordant` _Default: true_
 
 
 ## FastQ Screen optional parameters
@@ -126,40 +126,54 @@ Output directory where the files will be saved.
     ```
 
 - Option to pass the option --bisulfite to FastQ Screen.
-`--bisulfite`
+`--bisulfite` _Default: false_
 
 ## featureCounts optional parameters
 
-- Option to provide a custom FastQ Screen config file.
-`--fastq_screen_conf`
-    ``` bash
-    --fastq_screen_conf /cluster/work/nme/software/config/fastq_screen.conf # Default
-    ```
+- Option to only count read pairs that have both ends aligned.
+`--featurecounts_B_flag` _Default: true_
 
-- Option to pass the option --bisulfite to FastQ Screen.
-`--bisulfite`
+- Option to not count read pairs that have their two ends mapping to different chromosomes or mapping to same chromosome but on different strands.
+`--featurecounts_C_flag` _Default: true_
+
 
 ## Skipping options
+- Option to skip FastQC, TrimGalore, and FastQ Screen. The first step of the pipeline will be the Bismark alignment. 
+`--skip_qc`
+
 - Option to skip FastQ Screen. 
 `--skip_fastq_screen`
-
-- Option to skip Trim Galore. 
-`--skip_trim_galore`
 
 - Option to skip quantification. 
 `--skip_quantification`
 
 ## Extra arguments
-- Option to add extra arguments to the package [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/).
+
+- Option to add extra arguments to [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/).
 `--fastqc_args`
 
-- Option to add extra arguments to the package [FastQ Screen](https://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/).
+- Option to add extra arguments to [FastQ Screen](https://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/).
 `--fastq_screen_args`
 
-- Option to add extra arguments to the package [Trim Galore](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/).
+- Option to add extra arguments to [Trim Galore](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/).
 `--trim_galore_args`
 
-- Option to add extra arguments to the package [MultiQC](https://multiqc.info/).
+- Option to add extra arguments to the [STAR](https://github.com/alexdobin/STAR) aligner.
+`--star_align_args`
+
+- Option to add extra arguments to the [HISAT2](https://daehwankimlab.github.io/hisat2/) aligner.
+`--hisat2_align_args`
+
+- Option to add extra arguments to [Samtools sort](https://www.htslib.org/doc/samtools-sort.html).
+`--samtools_sort_args`
+
+- Option to add extra arguments to [Samtools index](https://www.htslib.org/doc/samtools-index.html).
+`--samtools_index_args`
+
+- Option to add extra arguments to [featureCounts](https://subread.sourceforge.net/featureCounts.html#:~:text=featureCounts%20is%20a%20highly%20efficient,and%20genomic%20DNA%2Dseq%20reads.).
+`--featurecounts_args`
+
+- Option to add extra arguments to [MultiQC](https://multiqc.info/).
 `--multiqc_args`
 
 ## Additional information
