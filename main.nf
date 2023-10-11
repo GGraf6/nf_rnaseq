@@ -246,7 +246,7 @@ workflow {
         if (!params.skip_qc){
 
             multiqc_ch = FASTQC.out.report.mix(
-                         TRIM_GALORE.out.report,
+                         TRIM_GALORE.out.report.ifEmpty([]),
                          FASTQC2.out.report.ifEmpty([])
                          ).collect()
 
@@ -256,17 +256,26 @@ workflow {
                             ).collect()
             }
 
-        } else {
             if (params.aligner == 'star'){
-                multiqc_ch = multiqc_ch.mix(
-                        STAR_ALIGN.out.log_final.ifEmpty([])
-                        ).collect() 
+            multiqc_ch = multiqc_ch.mix(
+                    STAR_ALIGN.out.log_final.ifEmpty([])
+                    ).collect() 
             }
             if (params.aligner == 'hisat2'){
                 multiqc_ch = multiqc_ch.mix(
                         HISAT2_ALIGN.out.stats.ifEmpty([])
                         ).collect()
             }
+
+        } else {
+
+            if (params.aligner == 'star'){
+                multiqc_ch = STAR_ALIGN.out.log_final.ifEmpty([]).collect() 
+            }
+            if (params.aligner == 'hisat2'){
+                multiqc_ch = HISAT2_ALIGN.out.stats.ifEmpty([]).collect()
+            }
+
         }
 
         if (!params.skip_quantification){
