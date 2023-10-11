@@ -19,6 +19,7 @@ if(params.outdir){
     outdir = '.'
 }
 
+
 /* ========================================================================================
     SKIP STEPS
 ======================================================================================== */
@@ -59,6 +60,7 @@ multiqc_args        = params.multiqc_args
 samtools_sort_args  = params.samtools_sort_args
 samtools_index_args = params.samtools_index_args
 
+
 /* ========================================================================================
     ALIGNER
 ======================================================================================== */
@@ -69,39 +71,40 @@ params.aligner = 'star'
     HISAT2 PARAMETERS
 ======================================================================================== */
 // no_softclip
-params.no_softclip = true
+params.hisat2_no_softclip = true
 
-if(params.no_softclip){
+if(params.hisat2_no_softclip){
     hisat2_args += " --no-softclip "
 }
+
 
 /* ========================================================================================
     STAR PARAMETERS
 ======================================================================================== */
 // outSAMtype
-params.outSAMtype_file = 'BAM'
-params.outSAMtype_sort = 'Unsorted'
-star_align_args       += ' --outSAMtype ' + params.outSAMtype_file + ' ' + params.outSAMtype_sort + ' '
+params.star_outSAMtype_file = 'BAM'
+params.star_outSAMtype_sort = 'Unsorted'
+star_align_args       += ' --outSAMtype ' + params.star_outSAMtype_file + ' ' + params.star_outSAMtype_sort + ' '
 
 
 /* ========================================================================================
     SUBREAD (FEATURECOUNTS) PARAMETERS
 ======================================================================================== */
 // B flag
-params.B_flag = true 
+params.featurecounts_B_flag = true 
 // Only count read pairs that have both ends aligned.
 
-if(params.B_flag){
+if(params.featurecounts_B_flag){
     featurecounts_args += " -B "
 }
 
 // C flag
-params.C_flag = true
+params.featurecounts_C_flag = true
 // -C  Do not count read pairs that have their two ends mapping
 //     to different chromosomes or mapping to same chromosome
 //     but on different strands.
 
-if(params.C_flag){
+if(params.featurecounts_C_flag){
     featurecounts_args += " -C "
 }
 
@@ -183,9 +186,12 @@ workflow {
         
             SAMTOOLS_SORT               (STAR_ALIGN.out.bam, outdir, samtools_sort_args)
             SAMTOOLS_INDEX              (SAMTOOLS_SORT.out.bam, outdir, samtools_index_args)
-            FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, STAR_ALIGN.out.single_end, outdir, featurecounts_args)
-            featurecounts_merge_counts_ch = FEATURECOUNTS.out.counts.collect()
-            FEATURECOUNTS_MERGE_COUNTS  (featurecounts_merge_counts_ch, outdir)
+
+            if (!params.skip_quantification){
+                FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, STAR_ALIGN.out.single_end, outdir, featurecounts_args)
+                featurecounts_merge_counts_ch = FEATURECOUNTS.out.counts.collect()
+                FEATURECOUNTS_MERGE_COUNTS  (featurecounts_merge_counts_ch, outdir)
+            }
         }
 
         // HISAT2 aligner
@@ -209,9 +215,12 @@ workflow {
 
             SAMTOOLS_SORT               (HISAT2.out.bam, outdir, samtools_sort_args)
             SAMTOOLS_INDEX              (SAMTOOLS_SORT.out.bam, outdir, samtools_index_args)
-            FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, HISAT2.out.single_end, outdir, featurecounts_args)
-            featurecounts_merge_counts_ch = FEATURECOUNTS.out.counts.collect()
-            FEATURECOUNTS_MERGE_COUNTS  (featurecounts_merge_counts_ch, outdir)
+
+            if (!params.skip_quantification){
+                FEATURECOUNTS               (SAMTOOLS_SORT.out.bam, HISAT2.out.single_end, outdir, featurecounts_args)
+                featurecounts_merge_counts_ch = FEATURECOUNTS.out.counts.collect()
+                FEATURECOUNTS_MERGE_COUNTS  (featurecounts_merge_counts_ch, outdir)
+            }
         }
 
 
@@ -242,26 +251,11 @@ workflow {
             }
         }
 
-        multiqc_ch = multiqc_ch.mix(
-                    FEATURECOUNTS.out.summary.ifEmpty([])
-                    ).collect() 
+        if (!params.skip_quantification){
+            multiqc_ch = multiqc_ch.mix(
+                        FEATURECOUNTS.out.summary.ifEmpty([])
+                        ).collect() 
+        }
 
         MULTIQC (multiqc_ch, outdir, multiqc_args)
-}
-
-workflow.onComplete {
-
-    def msg = """\
-        Pipeline execution summary
-        ---------------------------
-        Jobname     : ${workflow.runName}
-        Completed at: ${workflow.complete}
-        Duration    : ${workflow.duration}
-        Success     : ${workflow.success}
-        workDir     : ${workflow.workDir}
-        exit status : ${workflow.exitStatus}
-        """
-    .stripIndent()
-
-    sendMail(to: "${workflow.userName}@ethz.ch", subject: 'Minimal pipeline execution report', body: msg)
 }

@@ -26,7 +26,7 @@
                 "strandness": {
                     "type": "string",
                     "default": "smartseq2",
-                    "description": "RNA-Seq library strandness.",
+                    "description": "RNA-Seq library strandness. This will only affect quantification.",
                     "fa_icon": "fas fa-book",
                     "enum": ["smartseq2", "forward", "reverse", "unstranded"]
                 },
@@ -88,23 +88,7 @@
                     "enum": ["star", "hisat2"]
                 },
 
-                "outSAMtype_file": {
-                    "type": "string",
-                    "default": "BAM",
-                    "fa_icon": "fas fa-file-code",
-                    "description": "1st word of the STAR parameter: outSAMtype",
-                    "enum": ["BAM"]
-                },
-
-                "outSAMtype_sort": {
-                    "type": "string",
-                    "default": "Unsorted",
-                    "fa_icon": "fas fa-file-code",
-                    "description": "2nd word of the STAR parameter: outSAMtype",
-                    "enum": ["Unsorted", "SortedByCoordinate"]
-                },
-
-                "no_softclip": {
+                "hisat2_no_softclip": {
                     "type": "boolean",
                     "fa_icon": "fas fa-file-code",
                     "description": "HISAT2 parameter: no_softclip",
@@ -138,14 +122,14 @@
             "description": "Choose the featureCounts options.",
             "properties": {
 
-                "B_flag": {
+                "featurecounts_B_flag": {
                     "type": "boolean",
                     "description": "Only count read pairs that have both ends aligned.",
                     "fa_icon": "fas fa-file-code",
                     "default": true
                 },
 
-                "C_flag": {
+                "featurecounts_C_flag": {
                     "type": "boolean",
                     "fa_icon": "fas fa-file-code",
                     "description": "Do not count read pairs that have their two ends mapping to different chromosomes or mapping to same chromosome but on different strands.",
@@ -172,6 +156,13 @@
                     "type": "boolean",
                     "fa_icon": "fas fa-fast-forward",
                     "description": "Skip FastQ Screen.",
+                    "default": false
+                },
+
+                "skip_quantification": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-fast-forward",
+                    "description": "Skip RNA-Seq quantification.",
                     "default": false
                 }
 
