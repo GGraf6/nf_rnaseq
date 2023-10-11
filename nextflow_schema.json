@@ -88,7 +88,6 @@
                     "enum": ["star", "hisat2"]
                 },
 
-                {
                 "if": {
                     "aligner": "hisat2"
                 },
@@ -101,7 +100,6 @@
                             "default": true
                         }
                     }
-                }
             }
         },
 
