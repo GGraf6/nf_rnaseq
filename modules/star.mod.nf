@@ -7,9 +7,7 @@ nextflow.enable.dsl=2
 ======================================================================================== */
 params.bam_output = true // Setting if the bam file should be published
 
-params.single_end = false
-params.gzip       = false
-single_end        = params.single_end
+params.gzip       = false // To detect if the input files are gzip compressed
 gzip              = params.gzip
 
 

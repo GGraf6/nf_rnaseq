@@ -36,7 +36,6 @@ process HISAT2 {
 		readString = ""
 		if (reads instanceof List) {
 			readString  = "-1 " + reads[0] + " -2 " + reads[1]
-			hisat2_args = hisat2_args + " --no-mixed --no-discordant"
 			single_end  = false
 		}
 		else {

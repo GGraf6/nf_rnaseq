@@ -70,11 +70,25 @@ params.aligner = 'star'
 /* ========================================================================================
     HISAT2 PARAMETERS
 ======================================================================================== */
-// no_softclip
+// no-softclip: no soft-clipping
 params.hisat2_no_softclip = true
 
 if(params.hisat2_no_softclip){
     hisat2_args += " --no-softclip "
+}
+
+// no-mixed: suppress unpaired alignments for paired reads
+params.hisat2_no_mixed = true
+
+if(params.hisat2_no_mixed){
+    hisat2_args += " --no-mixed "
+}
+
+// no-discordant: suppress discordant alignments for paired reads
+params.hisat2_no_discordant = true
+
+if(params.hisat2_no_discordant){
+    hisat2_args += " --no-discordant "
 }
 
 

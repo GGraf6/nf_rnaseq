@@ -20,10 +20,9 @@ process MULTIQC {
 		publishDir "$outputdir/qc", mode: "link", overwrite: true
 
 	script:
-
 		"""
 		module load multiqc
 
-		multiqc $multiqc_args -x work --filename multiqc_report.html .
+		multiqc $multiqc_args --filename multiqc_report.html .
 		"""
 }
