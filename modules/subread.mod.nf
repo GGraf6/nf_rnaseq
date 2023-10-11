@@ -1,6 +1,7 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
+
 /* ========================================================================================
     PROCESSES
 ======================================================================================== */
@@ -61,7 +62,6 @@ process FEATURECOUNTS_MERGE_COUNTS {
 
     output:
         path "*.txt", emit: merged_counts
-
         publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true
 
     script:
