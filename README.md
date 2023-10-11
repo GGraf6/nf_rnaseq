@@ -1,8 +1,9 @@
-# Sequencing QC Pipeline
+# RNA Sequencing Pipeline
 
-<img width="40%" src="https://raw.githubusercontent.com/nextflow-io/trademark/master/nextflow2014_no-bg.png" />
+<img width="30%" src="https://raw.githubusercontent.com/nextflow-io/trademark/master/nextflow2014_no-bg.png" />
+<img width="30%" src="https://tower.nf/assets/nf-tower-black.svg" />
 
-A Nextflow pipeline to perform quality control of sequencing data.
+A Nextflow pipeline to perform quality control, alignment, and quantification of RNA sequencing data.
 
 ## Pipeline steps
 1. [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)

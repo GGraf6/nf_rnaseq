@@ -185,12 +185,12 @@ workflow {
             if (!params.skip_qc){ 
 
                 FASTQC                          (file_ch, outdir, fastqc_args)
-                TRIM_GALORE                     (file_ch, outdir, trim_galore_args)
 
                 if (!params.skip_fastq_screen){ 
-                FASTQ_SCREEN                    (TRIM_GALORE.out.reads, outdir, fastq_screen_args)
+                FASTQ_SCREEN                    (file_ch, outdir, fastq_screen_args)
                 }
 
+                TRIM_GALORE                     (file_ch, outdir, trim_galore_args)
                 FASTQC2                         (TRIM_GALORE.out.reads, outdir, fastqc_args)
                 STAR_ALIGN                      (TRIM_GALORE.out.reads, outdir, star_align_args)
 
@@ -214,12 +214,12 @@ workflow {
             if (!params.skip_qc){ 
 
                 FASTQC                          (file_ch, outdir, fastqc_args)
-                TRIM_GALORE                     (file_ch, outdir, trim_galore_args)
-
+                
                 if (!params.skip_fastq_screen){ 
-                FASTQ_SCREEN                    (TRIM_GALORE.out.reads, outdir, fastq_screen_args)
+                FASTQ_SCREEN                    (file_ch, outdir, fastq_screen_args)
                 }
 
+                TRIM_GALORE                     (file_ch, outdir, trim_galore_args)
                 FASTQC2                         (TRIM_GALORE.out.reads, outdir, fastqc_args)
                 HISAT2                          (TRIM_GALORE.out.reads, outdir, hisat2_args)
 
