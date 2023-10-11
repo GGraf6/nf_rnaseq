@@ -88,13 +88,20 @@
                     "enum": ["star", "hisat2"]
                 },
 
-                "hisat2_no_softclip": {
-                    "type": "boolean",
-                    "fa_icon": "fas fa-file-code",
-                    "description": "HISAT2 parameter: no_softclip",
-                    "default": true
+                {
+                "if": {
+                    "aligner": "hisat2"
+                },
+                "then": 
+                    {
+                        "hisat2_no_softclip": {
+                            "type": "boolean",
+                            "fa_icon": "fas fa-file-code",
+                            "description": "HISAT2 parameter: no_softclip. Only take effect if HISAT2 is the aligner.",
+                            "default": true
+                        }
+                    }
                 }
-
             }
         },
 
