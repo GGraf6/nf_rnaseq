@@ -105,7 +105,7 @@
                 "hisat2_no_discordant": {
                     "type": "boolean",
                     "fa_icon": "fas fa-file-code",
-                    "description": "HISAT2 parameter: no_discordant. Suppresses discordant alignments for paired reads.",
+                    "description": "HISAT2 parameter: no-discordant. Suppresses discordant alignments for paired reads.",
                     "default": true
                 }
             }
