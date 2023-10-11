@@ -26,6 +26,6 @@ process FASTQC {
 		"""
 		module load fastqc
 
-		fastqc $fastqc_args --threads ${task.cpus} ${reads}
+		fastqc ${fastqc_args} --threads ${task.cpus} ${reads}
 		"""
 }

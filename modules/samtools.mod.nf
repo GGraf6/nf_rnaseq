@@ -36,7 +36,7 @@ process SAMTOOLS_SORT {
 		"""
 		module load samtools
 
-		samtools sort --threads ${task.cpus-1} $samtools_sort_args $bam -o ${basename}.sorted.bam
+		samtools sort --threads ${task.cpus-1} ${samtools_sort_args} ${bam} -o ${basename}.sorted.bam
     	"""
 }
 
@@ -60,6 +60,6 @@ process SAMTOOLS_INDEX {
 		"""
 		module load samtools
 
-		samtools index -@ ${task.cpus-1} $samtools_index_args $bam
+		samtools index -@ ${task.cpus-1} ${samtools_index_args} ${bam}
 		"""
 }

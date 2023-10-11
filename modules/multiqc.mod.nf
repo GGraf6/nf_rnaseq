@@ -23,6 +23,6 @@ process MULTIQC {
 		"""
 		module load multiqc
 
-		multiqc $multiqc_args --filename multiqc_report.html .
+		multiqc ${multiqc_args} --filename multiqc_report.html .
 		"""
 }

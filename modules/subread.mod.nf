@@ -44,10 +44,10 @@ process FEATURECOUNTS {
 		module load subread
 
 		featureCounts \\
-            $featurecounts_args \\
-            $paired_end \\
-            -T $task.cpus \\
-            -a $annotation \\
+            ${featurecounts_args} \\
+            ${paired_end} \\
+            -T ${task.cpus} \\
+            -a ${annotation} \\
             -o ${basename}.featureCounts.txt \\
             ${bam}
 		"""
