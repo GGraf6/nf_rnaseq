@@ -90,10 +90,8 @@
 
                 "hisat2_no_softclip": {
                     "type": "boolean",
-                    "if": { "aligner": "hisat2" },
-                    "then": { "hisat2_no_softclip": false },
                     "fa_icon": "fas fa-file-code",
-                    "description": "HISAT2 parameter: no_softclip. Only take effect if HISAT2 is the aligner.",
+                    "description": "HISAT2 parameter: no_softclip. Only takes effect if HISAT2 is the aligner.",
                     "default": true
                 }
             }
