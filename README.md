@@ -5,6 +5,8 @@
 
 A Nextflow pipeline to perform quality control, alignment, and quantification of RNA sequencing data.
 
+>The pipeline was created to run in the [ETH Euler cluster](https://scicomp.ethz.ch/wiki/Euler) and it relies on the [Lmod environmental modules](https://lmod.readthedocs.io/en/latest/) available in the cluster. Thus, the pipeline needs to be adapted before running it in another HPC cluster.
+
 ## Pipeline steps
 1. [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 2. [FastQ Screen](https://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
@@ -41,10 +43,10 @@ Output directory where the files will be saved.
 
 - Option to select RNA-Seq library strandness. This will only affect quantification.
     ``` bash
-    --strandness smartseq2 # Default (same as 'unstranded')
-    --strandness forward
-    --strandness reverse
-    --strandness unstranded
+    --strandness 'smartseq2' # Default (same as 'unstranded')
+    --strandness 'forward'
+    --strandness 'reverse'
+    --strandness 'unstranded'
     ```
 
     _This option will only affect quantification._
@@ -75,11 +77,10 @@ Output directory where the files will be saved.
         Mitochondria
     ```
 
-- Option to use a custom genome for alignment by providing an absolute path to a custom genome file. 
-`--custom_genome_file`
+- Option to use a custom genome for alignment by providing an absolute path to a custom genome file.
 
     ``` bash
-    --custom_genome_file /cluster/work/nme/data/josousa/project/genome/CHM13.genome
+    --custom_genome_file '/cluster/work/nme/data/josousa/project/genome/CHM13.genome'
     ```
 
     Example of a genome file:
@@ -100,7 +101,6 @@ Output directory where the files will be saved.
 ## Aligner options
 
 - Option to choose the aligner.
-`--aligner`
     ``` bash
     --aligner 'star' # Default
     --aligner 'hisat2'
@@ -120,7 +120,6 @@ Output directory where the files will be saved.
 ## FastQ Screen optional parameters
 
 - Option to provide a custom FastQ Screen config file.
-`--fastq_screen_conf`
     ``` bash
     --fastq_screen_conf /cluster/work/nme/software/config/fastq_screen.conf # Default
     ```
@@ -175,9 +174,6 @@ Output directory where the files will be saved.
 
 - Option to add extra arguments to [MultiQC](https://multiqc.info/).
 `--multiqc_args`
-
-## Additional information
-The pipeline was created to run in the [ETH Euler cluster](https://scicomp.ethz.ch/wiki/Euler) and it relies on the [Lmod environmental modules](https://lmod.readthedocs.io/en/latest/) available in the cluster. Thus, the pipeline needs to be adapted before running it in another HPC cluster.
 
 ## Acknowledgements
 This pipeline was adapted from the Nextflow pipelines created by the [Babraham Institute Bioinformatics Group](https://github.com/s-andrews/nextflow_pipelines) and from the [nf-core](https://nf-co.re/) pipelines. We thank all the contributors for both projects. We also thank the [Nextflow community](https://nextflow.slack.com/join) and the [nf-core community](https://nf-co.re/join) for all the help and support.
