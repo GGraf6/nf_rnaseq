@@ -50,33 +50,3 @@ def getGenome(name) {
     return genomeValues
 
 }
-
-
-// listGenomes
-def listGenomes() {
-
-    println ("These genomes are currently available to choose from:")
-    println ("=====================================================")
-    scriptDir = workflow.projectDir + "/genomes/"
-
-    allFiles = scriptDir.list()
-
-    for( def file : allFiles.sort() ) {
-
-        if( file =~ /.genome$/){
-
-            genomeFH = new File(scriptDir.toString() + "/$file").newInputStream()
-            name = file.replaceFirst(/.genome/, "")
-
-            println (name)
-            genomeFH.eachLine {
-                if (params.verbose){
-                    println ("\t$it")
-                }
-            }
-        }
-    }
-    println ("\nTo see this list of available genomes with more detailed information about paths and indexes,\nplease re-run the command including '--list_genomes --verbose'\n\n")
-
-    System.exit(1)
-}
