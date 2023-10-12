@@ -5,7 +5,7 @@
 
 A Nextflow pipeline to perform quality control, alignment, and quantification of RNA sequencing data.
 
->The pipeline was created to run in the [ETH Euler cluster](https://scicomp.ethz.ch/wiki/Euler) and it relies on the [Lmod environmental modules](https://lmod.readthedocs.io/en/latest/) available in the cluster. Thus, the pipeline needs to be adapted before running it in another HPC cluster.
+>The pipeline was created to run on the [ETH Euler cluster](https://scicomp.ethz.ch/wiki/Euler) and it relies on the server's [Lmod environmental modules](https://lmod.readthedocs.io/en/latest/) and genome files. Thus, the pipeline needs to be adapted before running it in a different HPC cluster.
 
 ## Pipeline steps
 1. [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
