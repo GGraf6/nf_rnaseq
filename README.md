@@ -121,7 +121,7 @@ Output directory where the files will be saved.
 
 - Option to provide a custom FastQ Screen config file.
     ``` bash
-    --fastq_screen_conf /cluster/work/nme/software/config/fastq_screen.conf # Default
+    --fastq_screen_conf '/cluster/work/nme/software/config/fastq_screen.conf' # Default
     ```
 
 - Option to pass the option --bisulfite to FastQ Screen.
