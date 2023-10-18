@@ -1,11 +1,11 @@
 # RNA Sequencing Pipeline
 
 <img width="30%" src="https://raw.githubusercontent.com/nextflow-io/trademark/master/nextflow-logo-bg-light.png" />
-<img width="30%" src="https://tower.nf/assets/nf-tower-white.svg" />
+<img width="30%" src="https://tower.nf/assets/nf-tower-black.svg" />
 
 A Nextflow pipeline to perform quality control, alignment, and quantification of RNA sequencing data.
 
->The pipeline was created to run on the [ETH Euler cluster](https://scicomp.ethz.ch/wiki/Euler) and it relies on the server's [Lmod environmental modules](https://lmod.readthedocs.io/en/latest/) and genome files. Thus, the pipeline needs to be adapted before running it in a different HPC cluster.
+>The pipeline was created to run on the [ETH Euler cluster](https://scicomp.ethz.ch/wiki/Euler) and it relies on the server's [Lmod environment modules](https://lmod.readthedocs.io/en/latest/) and genome files. Thus, the pipeline needs to be adapted before running it in a different HPC cluster.
 
 ## Pipeline steps
 1. [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
