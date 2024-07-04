@@ -1,16 +1,6 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
-/* ========================================================================================
-    CONTAINER
-======================================================================================== */
-// container = 'docker://combinelab/salmon:1.10.2'
-
-
-/* ========================================================================================
-    DEFAULT PARAMETERS
-======================================================================================== */
-
 
 /* ========================================================================================
     PROCESSES
@@ -20,6 +10,8 @@ process SALMON_ALIGN {
 	label 'salmon'
 	tag "$name" // Adds name to job submission
 
+	container 'docker://combinelab/salmon:1.10.3'
+
 	input:
 		tuple val(name), path(reads)
 		val(outputdir)
@@ -43,8 +35,6 @@ process SALMON_ALIGN {
 		gtf = params.genome["gtf"]
 
 		"""
-		module load salmon
-
 		salmon quant --geneMap ${annotation} --threads ${task.cpus} --libType=$strandedness $reference ${reads} ${salmon_quant_args} -o ${basename}.salmon.txt
 		"""
 }
@@ -54,6 +44,8 @@ process SALMON_QUANT {
 	label 'salmon'
 	tag "$name" // Adds name to job submission
 
+	container 'docker://combinelab/salmon:1.10.3'
+
 	input:
 		tuple val(name), path(reads)
 		val(outputdir)
@@ -77,8 +69,6 @@ process SALMON_QUANT {
 		gtf = params.genome["gtf"]
 
 		"""
-		module load salmon
-
 		salmon quant --geneMap ${annotation} --threads ${task.cpus} --libType=$strandedness $reference ${reads} ${salmon_quant_args} -o ${basename}.salmon.txt
 		"""
 }

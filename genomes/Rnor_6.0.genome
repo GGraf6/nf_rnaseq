@@ -1,9 +1,9 @@
 name	        Rnor_6.0
 species	        Rattus_norvegicus
-fasta           ${GENOMES}/Rattus_norvegicus/Ensembl/Rnor_6.0/Sequence/WholeGenomeFasta/
-bismark         ${GENOMES}/Rattus_norvegicus/Ensembl/Rnor_6.0/Sequence/BismarkIndex/
-bowtie	        ${GENOMES}/Rattus_norvegicus/Ensembl/Rnor_6.0/Sequence/BowtieIndex/genome
-bowtie2	        ${GENOMES}/Rattus_norvegicus/Ensembl/Rnor_6.0/Sequence/Bowtie2Index/genome
-star            ${GENOMES}/Rattus_norvegicus/Ensembl/Rnor_6.0/Sequence/STARIndex
-bwa             ${GENOMES}/Rattus_norvegicus/Ensembl/Rnor_6.0/Sequence/BWAIndex/genome
-gtf	            ${GENOMES}/Rattus_norvegicus/Ensembl/Rnor_6.0/Annotation/Genes/genes.gtf
+fasta           /cluster/work/nme/genomes/Rattus_norvegicus/Ensembl/Rnor_6.0/Sequence/WholeGenomeFasta/
+bismark         /cluster/work/nme/genomes/Rattus_norvegicus/Ensembl/Rnor_6.0/Sequence/BismarkIndex/
+bowtie	        /cluster/work/nme/genomes/Rattus_norvegicus/Ensembl/Rnor_6.0/Sequence/BowtieIndex/genome
+bowtie2	        /cluster/work/nme/genomes/Rattus_norvegicus/Ensembl/Rnor_6.0/Sequence/Bowtie2Index/genome
+star            /cluster/work/nme/genomes/Rattus_norvegicus/Ensembl/Rnor_6.0/Sequence/STARIndex
+bwa             /cluster/work/nme/genomes/Rattus_norvegicus/Ensembl/Rnor_6.0/Sequence/BWAIndex/genome
+gtf	            /cluster/work/nme/genomes/Rattus_norvegicus/Ensembl/Rnor_6.0/Annotation/Genes/genes.gtf

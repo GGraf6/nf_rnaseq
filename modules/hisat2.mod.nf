@@ -16,6 +16,8 @@ process HISAT2_ALIGN {
 	label 'hisat2_align'
 	tag "$name" // Adds name to job submission
 
+	container 'docker://josousa/hisat2:2.2.1'
+
 	input:
 		tuple val(name), path(reads)
 		val(outputdir)
@@ -60,8 +62,6 @@ process HISAT2_ALIGN {
 		hisat_name = name + "_" + params.genome["name"]
 
 		"""
-		module load hisat2 samtools
-
 		hisat2 -p ${task.cpus} ${hisat2_align_args} -x ${index} ${splices} ${readString} 2>${hisat_name}_ht2_stats.txt | samtools view -bS -F 4 -F 8 -F 256 -> ${hisat_name}_ht2.bam
 		"""
 }

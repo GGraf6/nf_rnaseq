@@ -1,7 +1,7 @@
 name	    Vectors
 species	    Vectors
-fasta	    ${GENOMES}/Vectors
-bismark	    ${GENOMES}/Vectors
-bowtie	    ${GENOMES}/Vectors/Vectors
-bowtie2	    ${GENOMES}/Vectors/Vectors
-hisat2	    ${GENOMES}/Vectors/Vectors
+fasta	    /cluster/work/nme/genomes/Vectors
+bismark	    /cluster/work/nme/genomes/Vectors
+bowtie	    /cluster/work/nme/genomes/Vectors/Vectors
+bowtie2	    /cluster/work/nme/genomes/Vectors/Vectors
+hisat2	    /cluster/work/nme/genomes/Vectors/Vectors

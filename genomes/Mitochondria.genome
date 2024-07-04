@@ -1,7 +1,7 @@
 name	    Mitochondria
 species	    Homo_sapiens_GRCh38_chromosome_MT
-fasta	    ${GENOMES}/Mitochondria
-bismark	    ${GENOMES}/Mitochondria
-bowtie	    ${GENOMES}/Mitochondria/mitochondria
-bowtie2	    ${GENOMES}/Mitochondria/mitochondria
-hisat2	    ${GENOMES}/Mitochondria/mitochondria
+fasta	    /cluster/work/nme/genomes/Mitochondria
+bismark	    /cluster/work/nme/genomes/Mitochondria
+bowtie	    /cluster/work/nme/genomes/Mitochondria/mitochondria
+bowtie2	    /cluster/work/nme/genomes/Mitochondria/mitochondria
+hisat2	    /cluster/work/nme/genomes/Mitochondria/mitochondria

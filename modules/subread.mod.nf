@@ -12,6 +12,8 @@ process FEATURECOUNTS {
     label "featureCounts"
 	tag "$bam" // Adds name to job submission
 
+    container 'docker://josousa/subread:2.0.6'
+
 	input:
 		path(bam)
         val(single_end)
@@ -41,8 +43,6 @@ process FEATURECOUNTS {
         annotation = params.genome["gtf"]
         
 		"""
-		module load subread
-
 		featureCounts \\
             ${featurecounts_args} \\
             ${paired_end} \\

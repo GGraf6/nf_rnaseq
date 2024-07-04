@@ -3,12 +3,6 @@ nextflow.enable.dsl=2
 
 
 /* ========================================================================================
-    CONTAINER
-======================================================================================== */
-// container = 'singularity pull docker://quay.io/biocontainers/star:2.7.11a--h0033a41_0'
-
-
-/* ========================================================================================
     DEFAULT PARAMETERS
 ======================================================================================== */
 params.bam_output = true // Setting if the bam file should be published
@@ -24,6 +18,8 @@ process STAR_ALIGN {
 
 	label 'star_align'
 	tag "$name" // Adds name to job submission
+
+	container 'docker://josousa/star:2.7.11b'
 
 	input:
 		tuple val(name), path(reads)
@@ -89,8 +85,6 @@ process STAR_ALIGN {
 		star_name = name + "_" + params.genome["name"] + "_" + "star" +  "."
 
 		"""
-		module load star
-
 		STAR \\
 			--genomeDir ${index} \\
 			--outFileNamePrefix ${star_name} \\

@@ -18,6 +18,8 @@ process SAMTOOLS_SORT {
 	label 'samtools'
 	tag "$bam" // Adds name to job submission
 
+	container 'docker://staphb/samtools:1.20'
+
 	input:
 		path(bam)
 		val(outputdir)
@@ -34,8 +36,6 @@ process SAMTOOLS_SORT {
 		basename = bam.toString() - ".bam"
 
 		"""
-		module load samtools
-
 		samtools sort --threads ${task.cpus-1} ${samtools_sort_args} ${bam} -o ${basename}.sorted.bam
     	"""
 }
@@ -45,6 +45,8 @@ process SAMTOOLS_INDEX {
     
 	label 'samtools'
 	tag "$bam" // Adds name to job submission
+
+	container 'docker://staphb/samtools:1.20'
 
 	input:
 		path(bam)
@@ -58,8 +60,6 @@ process SAMTOOLS_INDEX {
     script:
 
 		"""
-		module load samtools
-
 		samtools index -@ ${task.cpus-1} ${samtools_index_args} ${bam}
 		"""
 }
