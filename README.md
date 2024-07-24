@@ -12,31 +12,29 @@ A Nextflow pipeline to perform quality control, alignment, and quantification of
 2. [FastQ Screen](https://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
 3. [Trim Galore](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/)
 4. [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
-5. [STAR](https://github.com/alexdobin/STAR) _default_
-6. [HISAT2](https://daehwankimlab.github.io/hisat2/) _optional_
-7. [Samtools sort](https://www.htslib.org/doc/samtools-sort.html)
-8. [Samtools index](https://www.htslib.org/doc/samtools-index.html)
-9. [featureCounts](https://subread.sourceforge.net/featureCounts.html#:~:text=featureCounts%20is%20a%20highly%20efficient,and%20genomic%20DNA%2Dseq%20reads.)
-10. [MultiQC](https://multiqc.info/)
+5. [STAR](https://github.com/alexdobin/STAR) or [HISAT2](https://daehwankimlab.github.io/hisat2/)
+6. [Samtools sort](https://www.htslib.org/doc/samtools-sort.html)
+7. [Samtools index](https://www.htslib.org/doc/samtools-index.html)
+8. [featureCounts](https://subread.sourceforge.net/featureCounts.html#:~:text=featureCounts%20is%20a%20highly%20efficient,and%20genomic%20DNA%2Dseq%20reads.)
+19. [MultiQC](https://multiqc.info/)
 
 ## Required parameters
 
 Path to the folder where the FASTQ files are located.
-`--input`
 ``` bash
 --input /cluster/work/nme/data/josousa/project/fastq/*fastq.gz
 ```
 
 Output directory where the files will be saved.
-`--outdir`
 ``` bash
 --outdir /cluster/work/nme/data/josousa/project
 ```
 
-## Input optional parameters
+### Input optional parameters
 
 - Option to force the pipeline to assign input as single-end.
-`--single_end`
+
+    `--single_end`
 
     >_By default, the pipeline detects whether the input files are single-end or paired-end._
 
@@ -53,7 +51,8 @@ Output directory where the files will be saved.
 
 ## Genomes
 - Reference genome used for alignment.
-`--genome`
+
+    `--genome`
 
     Available genomes:
     ``` bash
@@ -85,17 +84,12 @@ Output directory where the files will be saved.
 
     Example of a genome file:
     ``` bash    
-    name           GRCm39                                                                      
-    species        Mouse                                                                       
-    fasta          /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/WholeGenomeFasta/           
-    bismark        /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/BismarkIndex/               
-    bowtie         /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/BowtieIndex/genome          
-    bowtie2        /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/Bowtie2Index/genome         
-    star           /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/STARIndex/            
-    bwa            /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/BWAIndex/genome             
-    hisat2         /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/genome          
+    name           GRCm39
+    species        Mouse
+    star           /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/STARIndex/
+    hisat2         /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/genome
     hisat2_splices /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/splice_sites.txt
-    gtf            /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Annotation/Genes/genes.gtf           
+    gtf            /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Annotation/Genes/genes.gtf
     ```
 
 ## Aligner options
@@ -108,13 +102,16 @@ Output directory where the files will be saved.
 
 ### HISAT2 parameters
 - Option to choose no soft-clipping.
-`--hisat2_no_softclip` _Default: true_
+
+    `--hisat2_no_softclip` _Default: true_
 
 - Option to suppress unpaired alignments for paired reads
-`--hisat2_no_mixed` _Default: true_
+
+    `--hisat2_no_mixed` _Default: true_
 
 - Option to suppress discordant alignments for paired reads.
-`--hisat2_no_discordant` _Default: true_
+
+    `--hisat2_no_discordant` _Default: true_
 
 
 ## FastQ Screen optional parameters
@@ -125,15 +122,18 @@ Output directory where the files will be saved.
     ```
 
 - Option to pass the flag --bisulfite to FastQ Screen.
-`--bisulfite` _Default: false_
+
+    `--bisulfite` _Default: false_
 
 ## featureCounts optional parameters
 
 - Option to only count read pairs that have both ends aligned.
-`--featurecounts_B_flag` _Default: true_
+
+    `--featurecounts_B_flag` _Default: true_
 
 - Option to not count read pairs that have their two ends mapping to different chromosomes or mapping to same chromosome but on different strands.
-`--featurecounts_C_flag` _Default: true_
+
+    `--featurecounts_C_flag` _Default: true_
 
 
 ## Skipping options
