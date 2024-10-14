@@ -6,6 +6,4 @@ bowtie	        /cluster/work/nme/genomes/Mus_musculus/NCBI/GRCm38/Sequence/Bowti
 bowtie2	        /cluster/work/nme/genomes/Mus_musculus/NCBI/GRCm38/Sequence/Bowtie2Index/genome
 star            /cluster/work/nme/genomes/Mus_musculus/NCBI/GRCm38/Sequence/STARIndex
 bwa             /cluster/work/nme/genomes/Mus_musculus/NCBI/GRCm38/Sequence/BWAIndex/genome
-hisat2	        /cluster/work/nme/genomes/Mus_musculus/NCBI/GRCm38/Sequence/Hisat2Index/genome
-hisat2_splices	/cluster/work/nme/genomes/Mus_musculus/NCBI/GRCm38/Sequence/Hisat2Index/splice_sites.txt
 gtf	            /cluster/work/nme/genomes/Mus_musculus/NCBI/GRCm38/Annotation/Genes/genes.gtf
