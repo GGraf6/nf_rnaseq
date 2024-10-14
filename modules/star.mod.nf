@@ -19,7 +19,7 @@ process STAR_ALIGN {
 	label 'star_align'
 	tag "$name" // Adds name to job submission
 
-	container 'docker://josousa/star:2.7.11b'
+	container 'docker://josousa/star:2.5.1b'
 
 	input:
 		tuple val(name), path(reads)

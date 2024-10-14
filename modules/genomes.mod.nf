@@ -31,8 +31,7 @@ def getGenome(name) {
     // die gracefully if the user specified an incorrect genome
     def testFile = new File(fileName)
     if (!testFile.exists()) {
-        println("\nFile >>$fileName<< does not exist. Listing available genomes...\n")
-        listGenomes()
+        println("\nFile >>$fileName<< does not exist.\n")
     }
     else {
         // println ("File $fileName exists.")
