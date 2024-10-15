@@ -85,7 +85,6 @@ Output directory where the files will be saved.
     ``` bash    
     name           GRCm39
     species        Mouse
-    fasta          /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/WholeGenomeFasta/
     star           /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/STARIndex/
     hisat2         /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/genome
     hisat2_splices /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/splice_sites.txt
