@@ -37,9 +37,9 @@ params.skip_quantification = false
     DEFAULT PARAMETERS
 ======================================================================================== */
 params.fastq_screen_conf = '/cluster/work/nme/software/config/fastq_screen.conf' // FastQ Screen config file directory
-params.genome            = 'Mus_musculus_GRCm39'    // Default genome
+params.genome            = 'Mus_musculus_GRCm39' // Default genome
 params.strandness        = 'smartseq2' // Library strandedness
-params.single_end        = false       // Force to input files to be single-end
+params.single_end        = false // Force to input files to be single-end
 
 
 /* ========================================================================================
