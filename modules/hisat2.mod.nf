@@ -53,8 +53,7 @@ process HISAT2_ALIGN {
 		/* ==========
 			Splices
 		========== */
-		// TODO: need to add a check if the splice-site infile is present or not, and leave out this parameter otherwise
-		splices = " --known-splicesite-infile " + params.genome["hisat2_splices"]
+		splices = params.genome["hisat2_splices"] ? " --known-splicesite-infile " + params.genome["hisat2_splices"] : ""
 
 		/* ==========
 			Basename

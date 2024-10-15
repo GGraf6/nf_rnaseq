@@ -1,0 +1,6 @@
+name	        GRCm38.p6
+species	        Mus_musculus
+fasta           /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm38_p6/fasta/ensembl_release_102/
+hisat2	        /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm38_p6/hisat2_index/ensembl_release_102/Mus_musculus_GRCm38_p6
+star            /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm38_p6/star_index/ensembl_release_102
+gtf	            /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm38_p6/ensembl_gtf/ensembl_release_102/Mus_musculus_GRCm38_p6.gtf.gz

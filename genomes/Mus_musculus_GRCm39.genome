@@ -1,0 +1,6 @@
+name	        GRCm39
+species	        Mus_musculus
+fasta           /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm39/fasta/ensembl_release_112/
+hisat2	        /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm39/hisat2_index/ensembl_release_112/Mus_musculus_GRCm39
+star            /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm39/star_index/ensembl_release_112
+gtf	            /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm39/ensembl_gtf/ensembl_release_112/Mus_musculus_GRCm39.gtf.gz

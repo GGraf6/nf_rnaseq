@@ -1,0 +1,6 @@
+name	        ARS1
+species	        Capra_hircus
+fasta           /cluster/work/nme/genomes/refgenie/alias/Capra_hircus_ARS1/fasta/ensembl_release_112/
+hisat2	        /cluster/work/nme/genomes/refgenie/alias/Capra_hircus_ARS1/hisat2_index/ensembl_release_112/Capra_hircus_ARS1
+star            /cluster/work/nme/genomes/refgenie/alias/Capra_hircus_ARS1/star_index/ensembl_release_112
+gtf	            /cluster/work/nme/genomes/refgenie/alias/Capra_hircus_ARS1/ensembl_gtf/ensembl_release_112/Capra_hircus_ARS1.gtf.gz

@@ -1,0 +1,6 @@
+name	        Mmul_10
+species	        Macaca_mulatta
+fasta           /cluster/work/nme/genomes/refgenie/alias/Macaca_mulatta_Mmul_10/fasta/ensembl_release_112/
+hisat2	        /cluster/work/nme/genomes/refgenie/alias/Macaca_mulatta_Mmul_10/hisat2_index/ensembl_release_112/Macaca_mulatta_Mmul_10
+star            /cluster/work/nme/genomes/refgenie/alias/Macaca_mulatta_Mmul_10/star_index/ensembl_release_112
+gtf	            /cluster/work/nme/genomes/refgenie/alias/Macaca_mulatta_Mmul_10/ensembl_gtf/ensembl_release_112/Macaca_mulatta_Mmul_10.gtf.gz

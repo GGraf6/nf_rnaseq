@@ -1,0 +1,6 @@
+name	        mCalJac1.pat.X
+species	        Callithrix_jacchus
+fasta           /cluster/work/nme/genomes/refgenie/alias/Callithrix_jacchus_mCalJac1_pat_X/fasta/ensembl_release_112/
+hisat2	        /cluster/work/nme/genomes/refgenie/alias/Callithrix_jacchus_mCalJac1_pat_X/hisat2_index/ensembl_release_112/Callithrix_jacchus_mCalJac1_pat_X
+star            /cluster/work/nme/genomes/refgenie/alias/Callithrix_jacchus_mCalJac1_pat_X/star_index/ensembl_release_112
+gtf	            /cluster/work/nme/genomes/refgenie/alias/Callithrix_jacchus_mCalJac1_pat_X/ensembl_gtf/ensembl_release_112/Callithrix_jacchus_mCalJac1_pat_X.gtf.gz

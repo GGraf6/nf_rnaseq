@@ -1,0 +1,6 @@
+name	        ASM160652v1
+species	        Escherichia_coli
+fasta           /cluster/work/nme/genomes/refgenie/alias/Escherichia_coli_ASM160652v1/fasta/ensembl_release_59/
+hisat2	        /cluster/work/nme/genomes/refgenie/alias/Escherichia_coli_ASM160652v1/hisat2_index/ensembl_release_59/Escherichia_coli_ASM160652v1
+star            /cluster/work/nme/genomes/refgenie/alias/Escherichia_coli_ASM160652v1/star_index/ensembl_release_59
+gtf	            /cluster/work/nme/genomes/refgenie/alias/Escherichia_coli_ASM160652v1/ensembl_gtf/ensembl_release_59/Escherichia_coli_ASM160652v1.gtf.gz

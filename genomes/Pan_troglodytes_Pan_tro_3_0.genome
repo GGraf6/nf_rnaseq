@@ -1,0 +1,6 @@
+name	        Pan_tro_3.0
+species	        Pan_troglodytes
+fasta           /cluster/work/nme/genomes/refgenie/alias/Pan_troglodytes_Pan_tro_3_0/fasta/ensembl_release_112/
+hisat2	        /cluster/work/nme/genomes/refgenie/alias/Pan_troglodytes_Pan_tro_3_0/hisat2_index/ensembl_release_112/Pan_troglodytes_Pan_tro_3_0
+star            /cluster/work/nme/genomes/refgenie/alias/Pan_troglodytes_Pan_tro_3_0/star_index/ensembl_release_112
+gtf	            /cluster/work/nme/genomes/refgenie/alias/Pan_troglodytes_Pan_tro_3_0/ensembl_gtf/ensembl_release_112/Pan_troglodytes_Pan_tro_3_0.gtf.gz

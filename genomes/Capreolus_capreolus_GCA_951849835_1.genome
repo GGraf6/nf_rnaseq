@@ -1,0 +1,6 @@
+name	        GCA_951849835.1
+species	        Capreolus_capreolus
+fasta           /cluster/work/nme/genomes/refgenie/alias/Capreolus_capreolus_GCA_951849835_1/fasta/default/
+hisat2	        /cluster/work/nme/genomes/refgenie/alias/Capreolus_capreolus_GCA_951849835_1/hisat2_index/default/Capreolus_capreolus_GCA_951849835_1
+star            /cluster/work/nme/genomes/refgenie/alias/Capreolus_capreolus_GCA_951849835_1/star_index/default
+gtf	            /cluster/work/nme/genomes/refgenie/alias/Capreolus_capreolus_GCA_951849835_1/ensembl_gtf/default/Capreolus_capreolus_GCA_951849835_1.gtf.gz
