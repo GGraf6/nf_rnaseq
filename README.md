@@ -66,6 +66,7 @@ Output directory where the files will be saved.
         Callithrix_jacchus_mCalJac1_pat_X
         Capra_hircus_ARS1
         Capreolus_capreolus_GCA_951849835_1
+        Drosophila_melanogaster_BDGP6_46
         Escherichia_coli_ASM160652v1
         Macaca_fascicularis_Macaca_fascicularis_6_0
         Macaca_mulatta_Mmul_10
