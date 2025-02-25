@@ -251,25 +251,25 @@ workflow {
         if (!params.skip_qc){
 
             multiqc_ch = FASTQC.out.report.mix(
-                         TRIM_GALORE.out.report.ifEmpty([]),
-                         FASTQC2.out.report.ifEmpty([])
-                         ).collect()
+                        TRIM_GALORE.out.report.ifEmpty([]),
+                        FASTQC2.out.report.ifEmpty([])
+                        ).collect()
 
             if (!params.skip_fastq_screen){
                 multiqc_ch = multiqc_ch.mix(
-                             FASTQ_SCREEN.out.report.ifEmpty([])
-                             ).collect()
+                            FASTQ_SCREEN.out.report.ifEmpty([])
+                            ).collect()
             }
 
             if (params.aligner == 'star'){
                 multiqc_ch = multiqc_ch.mix(
-                             STAR_ALIGN.out.log_final.ifEmpty([])
-                             ).collect() 
+                            STAR_ALIGN.out.log_final.ifEmpty([])
+                            ).collect() 
             }
             if (params.aligner == 'hisat2'){
                 multiqc_ch = multiqc_ch.mix(
-                             HISAT2_ALIGN.out.stats.ifEmpty([])
-                             ).collect()
+                            HISAT2_ALIGN.out.stats.ifEmpty([])
+                            ).collect()
             }
 
         } else {
@@ -285,8 +285,8 @@ workflow {
 
         if (!params.skip_quantification){
             multiqc_ch = multiqc_ch.mix(
-                         FEATURECOUNTS.out.summary.ifEmpty([])
-                         ).collect()
+                        FEATURECOUNTS.out.summary.ifEmpty([])
+                        ).collect()
         }
 
         MULTIQC (multiqc_ch, outdir, multiqc_args)

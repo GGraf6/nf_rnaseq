@@ -24,7 +24,7 @@ process FEATURECOUNTS {
         path("*featureCounts.txt")        , emit: counts
         path("*featureCounts.txt.summary"), emit: summary
         
-	 	publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true
+        publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true
 
 	script:
 		/* ==========
