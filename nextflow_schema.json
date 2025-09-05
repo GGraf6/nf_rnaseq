@@ -85,7 +85,7 @@
                     "default": "star",
                     "description": "Choose the aligner.",
                     "fa_icon": "fas fa-book",
-                    "enum": ["star", "hisat2"]
+                    "enum": ["star", "hisat2", "salmon"]
                 },
 
                 "hisat2_no_softclip": {
