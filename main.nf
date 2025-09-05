@@ -161,7 +161,7 @@ assert params.strandness == 'forward' || params.strandness == 'reverse' || param
 println ("Using strand orientation: " + params.strandness)
 
 // Validate aligner
-assert params.aligner == 'star' || params.aligner == 'hisat2' : "Invalid aligner option: >>${params.aligner}<<. Valid options are: 'star' or 'hisat2'\n\n"
+assert params.aligner == 'star' || params.aligner == 'hisat2' || params.aligner == 'salmon' : "Invalid aligner option: >>${params.aligner}<<. Valid options are: 'star' or 'hisat2'\n\n"
 println ("Using aligner: " + params.aligner)
 
 
