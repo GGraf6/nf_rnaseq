@@ -23,7 +23,8 @@ process SALMON_QUANT {
 		path("${prefix}") , emit: results
 		path("*info.json"), emit: json_info, optional: true
 
-		publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true
+		publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true, pattern: "*sf"
+        publishDir "$outputdir/aligned/logs",   mode: "link", overwrite: true, pattern: "cmd_info.json"
 
 	script:
 
@@ -68,6 +69,6 @@ process SALMON_QUANT {
 // TODO: 3) output?
 
 		"""
-		salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${gtf} -i ${index} ${readString} ${salmon_quant_args} -o $outfile
+		salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${gtf} -i ${index} ${readString} ${salmon_quant_args} -o ${outputdir}
 		"""
 }
