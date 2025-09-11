@@ -46,7 +46,7 @@ process SALMON_QUANT {
 
 
 		/* ==========
-			GTF file
+			Transcript to gene ID conversion
 		========== */
 		anno = params.genome["tx_to_gn"]
 
