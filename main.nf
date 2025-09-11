@@ -314,5 +314,5 @@ workflow {
                         ).collect()
         }
 
-        MULTIQC (multiqc_ch, outdir, multiqc_args)
+       // MULTIQC (multiqc_ch, outdir, multiqc_args)
 }
