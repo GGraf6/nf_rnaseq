@@ -248,9 +248,8 @@ workflow {
 
         // SALMON_QUANT aligner
         if (params.aligner == 'salmon'){
-            // print(params.genome)
             print(params.genome["salmon"])
-            // print(genome)
+            print(params.genome["star"])
 
             if (!params.skip_qc){ 
 
