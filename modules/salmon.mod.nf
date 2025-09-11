@@ -66,9 +66,14 @@ process SALMON_QUANT {
 		gtf = params.genome["gtf"]
 
 
-// TODO: 3) output?
+        /* ==========
+			Basename
+		========== */
+		salmon_name = name + "_" + params.genome["name"] + "_" + "salmon"
+
+
 
 		"""
-		salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${gtf} -i ${index} ${readString} ${salmon_quant_args} -o ${outputdir}
+		salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${gtf} -i ${index} ${readString} ${salmon_quant_args} -o ${outputdir}/${salmon_name}
 		"""
 }
