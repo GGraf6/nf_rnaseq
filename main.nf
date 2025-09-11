@@ -50,7 +50,7 @@ params.fastq_screen_args   = ''
 params.trim_galore_args    = ''
 params.star_align_args     = ''
 params.hisat2_align_args   = ''
-params.salmon_align_args   = ''
+params.salmon_quant_args   = ''
 params.featurecounts_args  = ''
 params.multiqc_args        = ''
 params.samtools_sort_args  = ''
@@ -61,7 +61,7 @@ fastq_screen_args   = params.fastq_screen_args
 trim_galore_args    = params.trim_galore_args 
 star_align_args     = params.star_align_args 
 hisat2_align_args   = params.hisat2_align_args 
-salmon_align_args   = params.salmon_align_args
+salmon_quant_args   = params.salmon_quant_args
 featurecounts_args  = params.featurecounts_args
 multiqc_args        = params.multiqc_args
 samtools_sort_args  = params.samtools_sort_args
@@ -176,7 +176,7 @@ include { FASTQ_SCREEN }               from './modules/fastq_screen.mod.nf' para
 include { TRIM_GALORE }                from './modules/trim_galore.mod.nf'
 include { HISAT2_ALIGN }               from './modules/hisat2.mod.nf'       params(genome: genome, bam_output: false)
 include { STAR_ALIGN }                 from './modules/star.mod.nf'         params(genome: genome, bam_output: false)
-include { SALMON_QUANT }               from './modules/salmon.mod.nf'       params(genome: genome, bam_output: false)
+include { SALMON_QUANT }               from './modules/salmon.mod.nf'
 include { SAMTOOLS_SORT }              from './modules/samtools.mod.nf'
 include { SAMTOOLS_INDEX }             from './modules/samtools.mod.nf'
 include { FEATURECOUNTS }              from './modules/subread.mod.nf'      params(genome: genome)
@@ -259,10 +259,10 @@ workflow {
 
                 TRIM_GALORE                     (file_ch, outdir, trim_galore_args)
                 FASTQC2                         (TRIM_GALORE.out.reads, outdir, fastqc_args)
-                HISAT2_ALIGN                    (TRIM_GALORE.out.reads, outdir, salmon_align_args)
+                SALMON_QUANT                    (TRIM_GALORE.out.reads, outdir, salmon_quant_args)
 
             } else {
-                SALMON_QUANT                    (file_ch, outdir, salmon_align_args)
+                SALMON_QUANT                    (file_ch, outdir, salmon_quant_args)
             }
 
         }
