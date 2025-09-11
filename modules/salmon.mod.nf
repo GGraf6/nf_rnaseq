@@ -48,13 +48,13 @@ process SALMON_QUANT {
 		/* ==========
 			Transcript to gene ID conversion
 		========== */
-		anno = params.genome["tx_to_gn"]
+		gtf = params.genome["gtf"]
 
 
-// TODO: 1) provide gtf or tx_to_gn? 2) parse strand based on PE/SE and read orientation 3) output? 4) additional parameters?
+// TODO: 3) output? 4) additional parameters?
 
 		"""
-		salmon quant -l $strand --threads ${task.cpus} --geneMap $gtf -i $index ${readString} -o $outfile
-        //salmon quant --geneMap ${anno} --threads ${task.cpus} --libType=$strandedness $reference ${reads} ${salmon_quant_args} -o ${basename}.salmon.txt
+		salmon quant -l $strand --threads ${task.cpus} --geneMap $gtf -i $index ${readString} -o $outfile ${salmon_quant_args}
+        //salmon quant --geneMap ${gtf} --threads ${task.cpus} --libType=$strandedness $reference ${reads} ${salmon_quant_args} -o ${basename}.salmon.txt
 		"""
 }
