@@ -51,7 +51,7 @@ process SALMON_QUANT {
 		gtf = params.genome["gtf"]
 
 
-// TODO: 3) output? 4) additional parameters?
+// TODO: 3) output?
 
 		"""
 		salmon quant -l $strand --threads ${task.cpus} --geneMap $gtf -i $index ${readString} -o $outfile ${salmon_quant_args}
