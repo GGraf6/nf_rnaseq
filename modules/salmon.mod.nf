@@ -26,12 +26,32 @@ process SALMON_QUANT {
 
 	script:
 
+        /* ==========
+			File names
+		========== */
+		readString = ""
+		if (reads instanceof List) {
+			readString  = "-1 " + reads[0] + " -2 " + reads[1]
+			single_end  = false
+		}
+		else {
+			readString  = "-r " + reads
+			single_end  = true
+		}
+
+        /* ==========
+			Index
+		========== */
+		index = params.genome["salmon"]
+
+
 		/* ==========
 			GTF file
 		========== */
 		gtf = params.genome["gtf"]
 
 		"""
-		salmon quant --geneMap ${gtf} --threads ${task.cpus} --libType=$strandedness $reference ${reads} ${salmon_quant_args} -o ${basename}.salmon.txt
+		salmon quant -l $strand --threads ${task.cpus} --geneMap $gtf -i $index ${readString} -o $outfile
+        //salmon quant --geneMap ${gtf} --threads ${task.cpus} --libType=$strandedness $reference ${reads} ${salmon_quant_args} -o ${basename}.salmon.txt
 		"""
 }
