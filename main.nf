@@ -259,10 +259,10 @@ workflow {
 
                 TRIM_GALORE                     (file_ch, outdir, trim_galore_args)
                 FASTQC2                         (TRIM_GALORE.out.reads, outdir, fastqc_args)
-                SALMON_QUANT                    (TRIM_GALORE.out.reads, outdir, salmon_quant_args)
+                SALMON_QUANT                    (TRIM_GALORE.out.reads, outdir, salmon_quant_args, params.strandness)
 
             } else {
-                SALMON_QUANT                    (file_ch, outdir, salmon_quant_args)
+                SALMON_QUANT                    (file_ch, outdir, salmon_quant_args, params.strandness)
             }
 
         }
