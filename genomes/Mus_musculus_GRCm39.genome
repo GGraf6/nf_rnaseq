@@ -5,3 +5,4 @@ hisat2	        /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm39/hisa
 star            /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm39/star_index/ensembl_release_112
 salmon          /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm39/salmon_index/ensembl_release_112
 gtf	            /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm39/ensembl_gtf/ensembl_release_112/Mus_musculus_GRCm39.gtf.gz
+tx_to_gn        /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm39/ensembl_gtf/ensembl_release_112/tx_to_gene.txt.gz
