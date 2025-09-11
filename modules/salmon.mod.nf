@@ -17,6 +17,7 @@ process SALMON_QUANT {
 		tuple val(name), path(reads)
 		val(outputdir)
 		val(salmon_quant_args)
+        val(strandness)
 
 	output:
 		path("${prefix}") , emit: results
@@ -27,17 +28,30 @@ process SALMON_QUANT {
 	script:
 
         /* ==========
-			File names
+			File names and strandness
 		========== */
-		readString = ""
+		readString   = ""
+        strandString = ""
 		if (reads instanceof List) {
-			readString  = "-1 " + reads[0] + " -2 " + reads[1]
-			single_end  = false
+			readString   = "-1 " + reads[0] + " -2 " + reads[1]
+            strandString += "I"
 		}
 		else {
-			readString  = "-r " + reads
-			single_end  = true
+			readString   = "-r " + reads
 		}
+
+
+        /* ==========
+			strandness: this depends also on the read SE or PE configuration
+		========== */
+        if (strandness == 'forward') {
+            strandString += "SF"
+        } else if (strandness == 'reverse') {
+            strandString += "SR"
+        } else if (strandness == 'unstranded' || params.strandness == 'smartseq2') {
+            strandString += "U"
+        }
+
 
         /* ==========
 			Index
@@ -54,7 +68,6 @@ process SALMON_QUANT {
 // TODO: 3) output?
 
 		"""
-		salmon quant -l $strand --threads ${task.cpus} --geneMap $gtf -i $index ${readString} -o $outfile ${salmon_quant_args}
-        //salmon quant --geneMap ${gtf} --threads ${task.cpus} --libType=$strandedness $reference ${reads} ${salmon_quant_args} -o ${basename}.salmon.txt
+		salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${gtf} -i ${index} ${readString} ${salmon_quant_args} -o $outfile
 		"""
 }
