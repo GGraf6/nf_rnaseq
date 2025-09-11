@@ -48,10 +48,10 @@ process SALMON_QUANT {
 		/* ==========
 			GTF file
 		========== */
-		gtf = params.genome["gtf"]
+		anno = params.genome["tx_to_gn"]
 
 		"""
 		salmon quant -l $strand --threads ${task.cpus} --geneMap $gtf -i $index ${readString} -o $outfile
-        //salmon quant --geneMap ${gtf} --threads ${task.cpus} --libType=$strandedness $reference ${reads} ${salmon_quant_args} -o ${basename}.salmon.txt
+        //salmon quant --geneMap ${anno} --threads ${task.cpus} --libType=$strandedness $reference ${reads} ${salmon_quant_args} -o ${basename}.salmon.txt
 		"""
 }
