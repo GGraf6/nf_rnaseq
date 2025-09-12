@@ -8,7 +8,7 @@ nextflow.enable.dsl=2
 
 process SALMON_QUANT {
 
-	label 'salmon'
+	label 'salmon_quant'
 	tag "$name" // Adds name to job submission
 
 	container 'docker://combinelab/salmon:1.10.3'
