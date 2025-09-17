@@ -20,10 +20,10 @@ process SALMON_QUANT {
         val(strandness)
 
 	output:
-		path('*/quant.genes.sf')    , emit: counts_gene
-		path('*/quant.sf')          , emit: counts_tx
-		path('*/logs/salmon_quant.log')  , emit: logfile
-		path('*/*json')             , emit: jsons
+		path('quant.genes.sf')    , emit: counts_gene
+		path('quant.sf')          , emit: counts_tx
+		path('logs/salmon_quant.log')  , emit: logfile
+		path('*json')             , emit: jsons
 
 		publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true, pattern: "*sf"
         publishDir "$outputdir/aligned/logs",   mode: "link", overwrite: true, pattern: "*json"
@@ -77,6 +77,7 @@ process SALMON_QUANT {
 
 		"""
 		module load salmon
-		salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${tx_to_gene} -i ${index} ${readString} ${salmon_quant_args} -o ${outputdir}/${salmon_name}
+		//salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${tx_to_gene} -i ${index} ${readString} ${salmon_quant_args} -o ${outputdir}/${salmon_name}
+		salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${tx_to_gene} -i ${index} ${readString} ${salmon_quant_args} -o ./
 		"""
 }
