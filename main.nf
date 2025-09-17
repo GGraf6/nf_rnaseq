@@ -262,7 +262,6 @@ workflow {
                 SALMON_QUANT                    (TRIM_GALORE.out.reads, outdir, salmon_quant_args, params.strandness)
 
             } else {
-                println ("I am here")
                 SALMON_QUANT                    (file_ch, outdir, salmon_quant_args, params.strandness)
             }
 
