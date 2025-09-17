@@ -59,6 +59,12 @@ process SALMON_QUANT {
         /* ==========
 			Index
 		========== */
+        print(params.genome)
+        print(name)
+        print(params.genome["name"])
+        print(params.genome["star"])
+
+
 		index = params.genome["salmon"]
         print(index)
 
