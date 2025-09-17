@@ -170,18 +170,19 @@ println ("Using aligner: " + params.aligner)
 /* ========================================================================================
     WORKFLOW
 ======================================================================================== */
-include { FASTQC }                     from './modules/fastqc.mod.nf'
-include { FASTQC as FASTQC2 }          from './modules/fastqc.mod.nf'
-include { FASTQ_SCREEN }               from './modules/fastq_screen.mod.nf' params(fastq_screen_conf: params.fastq_screen_conf)
-include { TRIM_GALORE }                from './modules/trim_galore.mod.nf'
-include { HISAT2_ALIGN }               from './modules/hisat2.mod.nf'       params(genome: genome, bam_output: false)
-include { STAR_ALIGN }                 from './modules/star.mod.nf'         params(genome: genome, bam_output: false)
-include { SALMON_QUANT }               from './modules/salmon.mod.nf'       params(genome: genome, bam_output: false)
-include { SAMTOOLS_SORT }              from './modules/samtools.mod.nf'
-include { SAMTOOLS_INDEX }             from './modules/samtools.mod.nf'
-include { FEATURECOUNTS }              from './modules/subread.mod.nf'      params(genome: genome)
-include { FEATURECOUNTS_MERGE_COUNTS } from './modules/subread.mod.nf'
-include { MULTIQC }                    from './modules/multiqc.mod.nf' 
+include { FASTQC }                            from './modules/fastqc.mod.nf'
+include { FASTQC as FASTQC2 }                 from './modules/fastqc.mod.nf'
+include { FASTQ_SCREEN }                      from './modules/fastq_screen.mod.nf' params(fastq_screen_conf: params.fastq_screen_conf)
+include { TRIM_GALORE }                       from './modules/trim_galore.mod.nf'
+include { HISAT2_ALIGN }                      from './modules/hisat2.mod.nf'       params(genome: genome, bam_output: false)
+include { STAR_ALIGN }                        from './modules/star.mod.nf'         params(genome: genome, bam_output: false)
+include { SALMON_QUANT }                      from './modules/salmon.mod.nf'       params(genome: genome, bam_output: false)
+include { SAMTOOLS_SORT }                     from './modules/samtools.mod.nf'
+include { SAMTOOLS_INDEX }                    from './modules/samtools.mod.nf'
+include { FEATURECOUNTS }                     from './modules/subread.mod.nf'      params(genome: genome)
+include { FEATURECOUNTS_MERGE_COUNTS }        from './modules/subread.mod.nf'
+include { FEATURECOUNTS_MERGE_COUNTS_salmon } from './modules/subread.mod.nf'
+include { MULTIQC }                           from './modules/multiqc.mod.nf' 
 
 workflow {
 
