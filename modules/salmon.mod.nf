@@ -52,12 +52,15 @@ process SALMON_QUANT {
         } else if (strandness == 'unstranded' || params.strandness == 'smartseq2') {
             strandString += "U"
         }
+        print(readString)
+        print(strandString)
 
 
         /* ==========
 			Index
 		========== */
 		index = params.genome["salmon"]
+        print(index)
 
 
 		/* ==========
