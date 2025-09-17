@@ -20,11 +20,13 @@ process SALMON_QUANT {
         val(strandness)
 
 	output:
-		path("${prefix}") , emit: results
-		path("*info.json"), emit: json_info, optional: true
+		path('quant.genes.sf')    , emit: counts_gene
+		path('quant.sf')          , emit: counts_tx
+		path('salmon_quant.log')  , emit: logfile
+		path('*json')             , emit: jsons
 
 		publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true, pattern: "*sf"
-        publishDir "$outputdir/aligned/logs",   mode: "link", overwrite: true, pattern: "cmd_info.json"
+        publishDir "$outputdir/aligned/logs",   mode: "link", overwrite: true, pattern: "*json"
 
 	script:
 
@@ -59,13 +61,7 @@ process SALMON_QUANT {
         /* ==========
 			Index
 		========== */
-        println(params)
-        println(params.genome)
-        println(params.genome["name"])
-        println(params.genome["star"])
-
-
-		index = params.genome["salmon"]
+        index = params.genome["salmon"]
 
 
 		/* ==========
