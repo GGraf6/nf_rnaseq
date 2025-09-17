@@ -76,7 +76,6 @@ process SALMON_QUANT {
 
 		"""
 		module load salmon
-		#salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${tx_to_gene} -i ${index} ${readString} ${salmon_quant_args} -o ${outputdir}/${salmon_name}
 		salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${tx_to_gene} -i ${index} ${readString} ${salmon_quant_args} -o ./${salmon_name}
 		"""
 }
