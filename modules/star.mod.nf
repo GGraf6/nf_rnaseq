@@ -77,8 +77,6 @@ process STAR_ALIGN {
 		/* ==========
 			Index
 		========== */
-        println(params)
-        println(params.genome)
 		index = params.genome["star"]
 		
 		/* ==========
