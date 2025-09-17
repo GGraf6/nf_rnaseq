@@ -99,8 +99,8 @@ process FEATURECOUNTS_MERGE_COUNTS_salmon {
 
     for fileid in `ls ./counts/*/quant.genes.sf`; do
 		samplename=`dirname \$fileid | cut -d "/" -f 3`
-		println(\$fileid)
-		println(\$samplename)
+		echo \$fileid
+		echo \$samplename
         echo \$samplename > tmp/counts/\$samplename.salmon_genecounts.txt
         grep -v "NumReads" \${fileid} | cut -f 5  >> tmp/counts/\$samplename.salmon_genecounts.txt
     done
