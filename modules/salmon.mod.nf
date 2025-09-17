@@ -63,7 +63,7 @@ process SALMON_QUANT {
 		/* ==========
 			Transcript to gene ID conversion
 		========== */
-		gtf = params.genome["gtf"]
+		tx_to_gene = params.genome["tx_to_gene"]
 
 
         /* ==========
@@ -74,6 +74,6 @@ process SALMON_QUANT {
 
 
 		"""
-		salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${gtf} -i ${index} ${readString} ${salmon_quant_args} -o ${outputdir}/${salmon_name}
+		salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${tx_to_gene} -i ${index} ${readString} ${salmon_quant_args} -o ${outputdir}/${salmon_name}
 		"""
 }
