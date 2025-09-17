@@ -59,6 +59,7 @@ process SALMON_QUANT {
         /* ==========
 			Index
 		========== */
+        println(params)
         println(params.genome)
         println(name)
         println(params.genome["name"])
