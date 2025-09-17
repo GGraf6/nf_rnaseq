@@ -176,7 +176,7 @@ include { FASTQ_SCREEN }               from './modules/fastq_screen.mod.nf' para
 include { TRIM_GALORE }                from './modules/trim_galore.mod.nf'
 include { HISAT2_ALIGN }               from './modules/hisat2.mod.nf'       params(genome: genome, bam_output: false)
 include { STAR_ALIGN }                 from './modules/star.mod.nf'         params(genome: genome, bam_output: false)
-include { SALMON_QUANT }               from './modules/salmon.mod.nf'
+include { SALMON_QUANT }               from './modules/salmon.mod.nf'       params(genome: genome, bam_output: false)
 include { SAMTOOLS_SORT }              from './modules/samtools.mod.nf'
 include { SAMTOOLS_INDEX }             from './modules/samtools.mod.nf'
 include { FEATURECOUNTS }              from './modules/subread.mod.nf'      params(genome: genome)
