@@ -61,7 +61,6 @@ process SALMON_QUANT {
 		========== */
         println(params)
         println(params.genome)
-        println(name)
         println(params.genome["name"])
         println(params.genome["star"])
 
