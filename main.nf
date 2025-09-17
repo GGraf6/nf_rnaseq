@@ -264,6 +264,11 @@ workflow {
             } else {
                 SALMON_QUANT                    (file_ch, outdir, salmon_quant_args, params.strandness)
             }
+            if (!params.skip_quantification){
+                featurecounts_merge_counts_ch = SALMON_QUANT.out.counts_gene.collect()
+                println(featurecounts_merge_counts_ch)
+                //FEATURECOUNTS_MERGE_COUNTS  (featurecounts_merge_counts_ch, outdir)
+            }
 
         }
 
