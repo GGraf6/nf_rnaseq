@@ -54,8 +54,6 @@ process SALMON_QUANT {
         } else if (strandness == 'unstranded' || params.strandness == 'smartseq2') {
             strandString += "U"
         }
-        println(readString)
-        println(strandString)
 
 
         /* ==========
