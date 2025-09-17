@@ -22,7 +22,6 @@ process SALMON_QUANT {
 	output:
 		path('quant.genes.sf')    , emit: counts_gene
 		path('quant.sf')          , emit: counts_tx
-		path('logs/salmon_quant.log')  , emit: logfile
 		path('*json')             , emit: jsons
 
 		publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true, pattern: "*sf"
