@@ -219,7 +219,7 @@
                     "fa_icon": "fas fa-file-code"
                 },
 
-                "salmon_align_args": {
+                "salmon_quant_args": {
                     "type": "string",
                     "description": "salmon aligner arguments.",
                     "fa_icon": "fas fa-file-code"
