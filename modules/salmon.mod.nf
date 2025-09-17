@@ -11,7 +11,7 @@ process SALMON_QUANT {
 	label 'salmon_quant'
 	tag "$name" // Adds name to job submission
 
-	container 'docker://combinelab/salmon:1.10.3'
+	//container 'docker://combinelab/salmon:1.10.3'
 
 	input:
 		tuple val(name), path(reads)
@@ -82,6 +82,7 @@ process SALMON_QUANT {
 
 
 		"""
+		module load salmon
 		salmon quant -l ${strandString} --threads ${task.cpus} --geneMap ${tx_to_gene} -i ${index} ${readString} ${salmon_quant_args} -o ${outputdir}/${salmon_name}
 		"""
 }
