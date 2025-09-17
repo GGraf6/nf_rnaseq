@@ -314,11 +314,11 @@ workflow {
 
         }
 
-        if (!params.skip_quantification){
-            multiqc_ch = multiqc_ch.mix(
-                        FEATURECOUNTS.out.summary.ifEmpty([])
-                        ).collect()
-        }
+      //  if (!params.skip_quantification){
+        //    multiqc_ch = multiqc_ch.mix(
+          //              FEATURECOUNTS.out.summary.ifEmpty([])
+            //            ).collect()
+        //}
 
        // MULTIQC (multiqc_ch, outdir, multiqc_args)
 }
