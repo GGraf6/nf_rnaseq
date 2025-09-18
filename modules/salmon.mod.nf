@@ -20,8 +20,8 @@ process SALMON_QUANT {
         val(strandness)
 
 	output:
-		path('*/quant.genes.sf')    , emit: counts_gene
-		path('*/quant.sf')          , emit: counts_tx
+		path('*/*quant.genes.sf')    , emit: counts_gene
+		path('*/*quant.sf')          , emit: counts_tx
 		path('*/*json')             , emit: jsons
 
 		publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true, pattern: "*/*sf"
