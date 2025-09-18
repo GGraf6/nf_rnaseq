@@ -269,7 +269,7 @@ workflow {
             if (!params.skip_quantification){
                 featurecounts_merge_counts_ch         = SALMON_QUANT.out.counts_gene.collect()
                 FEATURECOUNTS_MERGE_COUNTS_SALMON     (featurecounts_merge_counts_ch, outdir)
-                featurecounts_merge_counts_tx_ch       = SALMON_QUANT.out.counts_tx.collect()
+                featurecounts_merge_counts_tx_ch      = SALMON_QUANT.out.counts_tx.collect()
                 FEATURECOUNTS_MERGE_COUNTS_SALMON_TX  (featurecounts_merge_counts_tx_ch, outdir)
 
             }
