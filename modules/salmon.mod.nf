@@ -22,7 +22,8 @@ process SALMON_QUANT {
 	output:
 		path('*/*quant.genes.sf')          , emit: counts_gene
 		path('*/*quant.sf')                , emit: counts_tx
-		path('*/*json')                    , emit: jsons
+		path('*/cmd_info.json')            , emit: cmd_jsons
+		path('*/lib_format_counts.json')   , emit: lib_jsons
 		path('*/aux_info/meta_info.json')  , emit: meta_info
 		path('*/libParams/flenDist.txt')   , emit: flenDist
 
