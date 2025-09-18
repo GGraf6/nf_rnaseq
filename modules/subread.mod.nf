@@ -80,8 +80,8 @@ process FEATURECOUNTS_MERGE_COUNTS {
     """
 }
 
-// FEATURECOUNTS_MERGE_COUNTS_salmon
-process FEATURECOUNTS_MERGE_COUNTS_salmon {
+// FEATURECOUNTS_MERGE_COUNTS_SALMON
+process FEATURECOUNTS_MERGE_COUNTS_SALMON {
 
     input:
         path('counts/*/*quant.genes.sf')
@@ -107,8 +107,8 @@ process FEATURECOUNTS_MERGE_COUNTS_salmon {
     """
 }
 
-// FEATURECOUNTS_MERGE_COUNTS_salmon_tx
-process FEATURECOUNTS_MERGE_COUNTS_salmon_tx {
+// FEATURECOUNTS_MERGE_COUNTS_SALMON_TX
+process FEATURECOUNTS_MERGE_COUNTS_SALMON_TX {
 
     input:
         path('counts/*/*quant.sf')
