@@ -305,6 +305,11 @@ workflow {
                             HISAT2_ALIGN.out.stats.ifEmpty([])
                             ).collect()
             }
+            if (params.aligner == 'salmon'){
+                multiqc_ch = multiqc_ch.mix(SALMON_QUANT.out.lib_jsons.ifEmpty([])).collect()
+                multiqc_ch = multiqc_ch.mix(SALMON_QUANT.out.meta_info.ifEmpty([])).collect()
+                multiqc_ch = multiqc_ch.mix(SALMON_QUANT.out.flenDist.ifEmpty([])).collect()
+            }
 
         } else {
 
@@ -314,14 +319,19 @@ workflow {
             if (params.aligner == 'hisat2'){
                 multiqc_ch = HISAT2_ALIGN.out.stats.ifEmpty([]).collect()
             }
+            if (params.aligner == 'salmon'){
+                multiqc_ch = SALMON_QUANT.out.lib_jsons.ifEmpty([]).collect()
+                multiqc_ch = multiqc_ch.mix(SALMON_QUANT.out.meta_info.ifEmpty([])).collect()
+                multiqc_ch = multiqc_ch.mix(SALMON_QUANT.out.flenDist.ifEmpty([])).collect()
+            }
 
         }
 
         if (!params.skip_quantification){
-            multiqc_ch = multiqc_ch.mix(
-                        FEATURECOUNTS.out.summary.ifEmpty([])
-                        ).collect()
+            if (params.aligner != 'salmon'){ // FEATURECOUNTS quantification not done if salmon is used! The FEATURECOUNTS module is used only to merge the salmon output files
+                multiqc_ch = multiqc_ch.mix(FEATURECOUNTS.out.summary.ifEmpty([])).collect()
+            }
         }
-
+        println(multiqc_ch)
         //MULTIQC (multiqc_ch, outdir, multiqc_args)
 }
