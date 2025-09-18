@@ -94,15 +94,16 @@ process FEATURECOUNTS_MERGE_COUNTS_salmon {
     script:
     """
     mkdir -p tmp/counts
+	cp ./counts/*/*quant.genes.sf tmp/counts
 
-    cut -f 1 `ls ./counts/*/*quant.genes.sf | head -n 1` | grep -v "^#" > ids.tsv
+    cut -f 1 `ls tmp/counts/*quant.genes.sf | head -n 1` | grep -v "^#" > tmp/ids.tsv
 
-    for fileid in `ls ./counts/*/*quant.genes.sf`; do
+    for fileid in `ls tmp/counts/*quant.genes.sf`; do
 		samplename=\$(basename \$fileid | sed "s/_quant.genes.sf//g")
         echo \$samplename > tmp/counts/\$samplename.salmon_genecounts.txt
-        grep -v "NumReads" \${fileid} | cut -f 5  >> tmp/counts/\$samplename.salmon_genecounts.txt
+        grep -v "NumReads" \${fileid} | cut -f 5  >> tmp/counts/\${samplename}.salmon_genecounts.txt
     done
     
-    paste ids.tsv tmp/counts/* > gene_counts_merged.txt
+    paste tmp/ids.tsv tmp/counts/*.salmon_genecounts.txt > gene_counts_merged.txt
     """
 }
