@@ -181,8 +181,8 @@ include { SAMTOOLS_SORT }                        from './modules/samtools.mod.nf
 include { SAMTOOLS_INDEX }                       from './modules/samtools.mod.nf'
 include { FEATURECOUNTS }                        from './modules/subread.mod.nf'      params(genome: genome)
 include { FEATURECOUNTS_MERGE_COUNTS }           from './modules/subread.mod.nf'
-include { FEATURECOUNTS_MERGE_COUNTS_salmon }    from './modules/subread.mod.nf'
-include { FEATURECOUNTS_MERGE_COUNTS_salmon_tx } from './modules/subread.mod.nf'
+include { FEATURECOUNTS_MERGE_COUNTS_SALMON }    from './modules/subread.mod.nf'
+include { FEATURECOUNTS_MERGE_COUNTS_SALMON_TX } from './modules/subread.mod.nf'
 include { MULTIQC }                              from './modules/multiqc.mod.nf' 
 
 workflow {
@@ -267,10 +267,10 @@ workflow {
                 SALMON_QUANT                    (file_ch, outdir, salmon_quant_args, params.strandness)
             }
             if (!params.skip_quantification){
-                featurecounts_merge_counts_ch = SALMON_QUANT.out.counts_gene.collect()
-                println(featurecounts_merge_counts_ch)
-                FEATURECOUNTS_MERGE_COUNTS_salmon     (featurecounts_merge_counts_ch, outdir)
-                FEATURECOUNTS_MERGE_COUNTS_salmon_tx  (featurecounts_merge_counts_ch, outdir)
+                featurecounts_merge_counts_ch         = SALMON_QUANT.out.counts_gene.collect()
+                FEATURECOUNTS_MERGE_COUNTS_SALMON     (featurecounts_merge_counts_ch, outdir)
+                featurecounts_merge_counts_tx_ch       = SALMON_QUANT.out.counts_tx.collect()
+                FEATURECOUNTS_MERGE_COUNTS_SALMON_TX  (featurecounts_merge_counts_tx_ch, outdir)
 
             }
 
