@@ -28,8 +28,8 @@ process SALMON_QUANT {
 
 		publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true, pattern: "*/*sf"
         publishDir "$outputdir/aligned/logs",   mode: "link", overwrite: true, pattern: "*/*json"
-        publishDir "$outputdir/aligned/logs",   mode: "link", overwrite: true, pattern: "*/aux_info/"
-        publishDir "$outputdir/aligned/logs",   mode: "link", overwrite: true, pattern: "*/libParams/"
+        publishDir "$outputdir/aligned/logs",   mode: "link", overwrite: true, pattern: "*/aux_info/*json"
+        publishDir "$outputdir/aligned/logs",   mode: "link", overwrite: true, pattern: "*/libParams/*txt"
 
 	script:
 
