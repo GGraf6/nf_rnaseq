@@ -89,5 +89,12 @@ process SALMON_QUANT {
 
 		# remove original files
 		rm ${salmon_name}/quant.sf ${salmon_name}/quant.genes.sf 
+
+		# add sample name to each log file as well
+		mv ${salmon_name}/cmd_info.json ${salmon_name}/${salmon_name}_cmd_info.json
+		mv ${salmon_name}/lib_format_counts.json ${salmon_name}/${salmon_name}_lib_format_counts.json
+		mv ${salmon_name}/aux_info/meta_info.json ${salmon_name}/aux_info/${salmon_name}_meta_info.json
+		mv ${salmon_name}/libParams/flenDist.txt ${salmon_name}/libParams/${salmon_name}_flenDist.txt
+
 		"""
 }
