@@ -84,21 +84,21 @@ process FEATURECOUNTS_MERGE_COUNTS {
 process FEATURECOUNTS_MERGE_COUNTS_salmon {
 
     input:
-        path('counts/*/quant.genes.sf')
+        path('counts/*/*quant.genes.sf')
         val(outputdir)
 
     output:
-        path "*.txt", emit: merged_counts
+        path "gene_counts_merged.txt", emit: merged_counts
         publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true
 
     script:
     """
     mkdir -p tmp/counts
 
-    cut -f 1 `ls ./counts/*/quant.genes.sf | head -n 1` | grep -v "^#" > ids.tsv
+    cut -f 1 `ls ./counts/*/*quant.genes.sf | head -n 1` | grep -v "^#" > ids.tsv
 
-    for fileid in `ls ./counts/*/quant.genes.sf`; do
-		samplename=\$(basename \$(dirname \$fileid ))
+    for fileid in `ls ./counts/*/*quant.genes.sf`; do
+		samplename=\$(basename \$fileid | sed "s/_quant.genes.sf//g")
         echo \$samplename > tmp/counts/\$samplename.salmon_genecounts.txt
         grep -v "NumReads" \${fileid} | cut -f 5  >> tmp/counts/\$samplename.salmon_genecounts.txt
     done
