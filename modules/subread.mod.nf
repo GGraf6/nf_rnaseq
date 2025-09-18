@@ -106,3 +106,30 @@ process FEATURECOUNTS_MERGE_COUNTS_salmon {
     paste tmp/ids.tsv tmp/counts/*.salmon_genecounts.txt > gene_counts_merged.txt
     """
 }
+
+// FEATURECOUNTS_MERGE_COUNTS_salmon_tx
+process FEATURECOUNTS_MERGE_COUNTS_salmon_tx {
+
+    input:
+        path('counts/*/*quant.sf')
+        val(outputdir)
+
+    output:
+        path "tx_counts_merged.txt", emit: merged_counts
+        publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true
+
+    script:
+    """
+    mkdir -p tmp_tx/counts
+
+    cut -f 1 `ls ./counts/*/*quant.sf | head -n 1` | grep -v "^#" > tmp_tx/ids.tsv
+
+	i=0
+    for fileid in `ls ./counts/*/*quant.sf`; do
+		i=\$((i+1))
+		cat \${fileid} | cut -f 5  >> tmp_tx/counts/\${i}.salmon_txcounts.txt
+    done
+    
+    paste tmp_tx/ids.tsv tmp_tx/counts/*.salmon_txcounts.txt > tx_counts_merged.txt
+    """
+}
