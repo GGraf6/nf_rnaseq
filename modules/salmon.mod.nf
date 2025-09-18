@@ -20,12 +20,16 @@ process SALMON_QUANT {
         val(strandness)
 
 	output:
-		path('*/*quant.genes.sf')    , emit: counts_gene
-		path('*/*quant.sf')          , emit: counts_tx
-		path('*/*json')             , emit: jsons
+		path('*/*quant.genes.sf')          , emit: counts_gene
+		path('*/*quant.sf')                , emit: counts_tx
+		path('*/*json')                    , emit: jsons
+		path('*/aux_info/meta_info.json')  , emit: meta_info
+		path('*/libParams/flenDist.txt')   , emit: flenDist
 
 		publishDir "$outputdir/aligned/counts", mode: "link", overwrite: true, pattern: "*/*sf"
         publishDir "$outputdir/aligned/logs",   mode: "link", overwrite: true, pattern: "*/*json"
+        publishDir "$outputdir/aligned/logs",   mode: "link", overwrite: true, pattern: "*/aux_info/"
+        publishDir "$outputdir/aligned/logs",   mode: "link", overwrite: true, pattern: "*/libParams/"
 
 	script:
 
