@@ -55,7 +55,7 @@ process SALMON_QUANT {
             strandString += "SF"
         } else if (strandness == 'reverse') {
             strandString += "SR"
-        } else if (strandness == 'unstranded' || params.strandness == 'smartseq2') {
+        } else if (strandness == 'unstranded' || strandness == 'smartseq2') {
             strandString += "U"
         }
 
