@@ -140,6 +140,13 @@ if (params.strandness == 'forward') {
 
 
 /* ========================================================================================
+    MULTIQC PARAMETERS
+======================================================================================== */
+// Add custom search_patterns.yaml file in order to make multiqc properly working on custom salmon output files
+multiqc_args += " --config /cluster/work/nme/software/apps/multiqc/1.22.3/custom_search_patterns.yaml "
+
+
+/* ========================================================================================
     GENOMES
 ======================================================================================== */
 params.custom_genome_file = '' // Option to add a directory for a custom genome file
