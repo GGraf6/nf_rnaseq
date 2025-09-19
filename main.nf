@@ -320,7 +320,6 @@ workflow {
                 multiqc_ch = HISAT2_ALIGN.out.stats.ifEmpty([]).collect()
             }
             if (params.aligner == 'salmon'){
-                println("I should get in there...")
                 multiqc_ch = SALMON_QUANT.out.lib_jsons.ifEmpty([]).collect()
                 multiqc_ch = multiqc_ch.mix(SALMON_QUANT.out.meta_info.ifEmpty([])).collect()
                 multiqc_ch = multiqc_ch.mix(SALMON_QUANT.out.flenDist.ifEmpty([])).collect()
@@ -331,11 +330,8 @@ workflow {
         if (!params.skip_quantification){
             if (params.aligner != 'salmon'){ // FEATURECOUNTS quantification not done if salmon is used! The FEATURECOUNTS module is used only to merge the salmon output files
                 multiqc_ch = multiqc_ch.mix(FEATURECOUNTS.out.summary.ifEmpty([])).collect()
-                println("I should get in here...")
             }
         }
 
-        println("message from federico:")
-        println(multiqc_ch)
         MULTIQC (multiqc_ch, outdir, multiqc_args)
 }
